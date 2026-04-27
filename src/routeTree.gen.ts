@@ -30,6 +30,7 @@ import { Route as ApiHealthRouteImport } from "./routes/api/health";
 import { Route as DotwellKnownOpenidConfigurationRouteImport } from "./routes/[.]well-known/openid-configuration";
 import { Route as DotwellKnownOauthProtectedResourceRouteImport } from "./routes/[.]well-known/oauth-protected-resource";
 import { Route as DotwellKnownOauthAuthorizationServerRouteImport } from "./routes/[.]well-known/oauth-authorization-server";
+import { Route as DotwellKnownSplatRouteImport } from "./routes/[.]well-known/$";
 import { Route as UsernameSlugRouteImport } from "./routes/$username/$slug";
 import { Route as BuilderResumeIdRouteRouteImport } from "./routes/builder/$resumeId/route";
 import { Route as DashboardResumesIndexRouteImport } from "./routes/dashboard/resumes/index";
@@ -48,6 +49,7 @@ import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth.$";
 import { Route as DotwellKnownOauthProtectedResourceSplatRouteImport } from "./routes/[.]well-known/oauth-protected-resource.$";
 import { Route as DotwellKnownOauthAuthorizationServerSplatRouteImport } from "./routes/[.]well-known/oauth-authorization-server.$";
 import { Route as DotwellKnownMcpServerCardDotjsonRouteImport } from "./routes/[.]well-known/mcp/server-card[.]json";
+import { Route as DashboardSettingsIntegrationsRouteRouteImport } from "./routes/dashboard/settings/integrations/route";
 import { Route as DashboardSettingsAuthenticationIndexRouteImport } from "./routes/dashboard/settings/authentication/index";
 
 const SchemaDotjsonRoute = SchemaDotjsonRouteImport.update({
@@ -157,6 +159,11 @@ const DotwellKnownOauthAuthorizationServerRoute =
     path: "/.well-known/oauth-authorization-server",
     getParentRoute: () => rootRouteImport,
   } as any);
+const DotwellKnownSplatRoute = DotwellKnownSplatRouteImport.update({
+  id: "/.well-known/$",
+  path: "/.well-known/$",
+  getParentRoute: () => rootRouteImport,
+} as any);
 const UsernameSlugRoute = UsernameSlugRouteImport.update({
   id: "/$username/$slug",
   path: "/$username/$slug",
@@ -255,6 +262,12 @@ const DotwellKnownMcpServerCardDotjsonRoute =
     path: "/.well-known/mcp/server-card.json",
     getParentRoute: () => rootRouteImport,
   } as any);
+const DashboardSettingsIntegrationsRouteRoute =
+  DashboardSettingsIntegrationsRouteRouteImport.update({
+    id: "/settings/integrations",
+    path: "/settings/integrations",
+    getParentRoute: () => DashboardRouteRoute,
+  } as any);
 const DashboardSettingsAuthenticationIndexRoute =
   DashboardSettingsAuthenticationIndexRouteImport.update({
     id: "/settings/authentication/",
@@ -269,6 +282,7 @@ export interface FileRoutesByFullPath {
   "/schema.json": typeof SchemaDotjsonRoute;
   "/builder/$resumeId": typeof BuilderResumeIdRouteRouteWithChildren;
   "/$username/$slug": typeof UsernameSlugRoute;
+  "/.well-known/$": typeof DotwellKnownSplatRoute;
   "/.well-known/oauth-authorization-server": typeof DotwellKnownOauthAuthorizationServerRouteWithChildren;
   "/.well-known/oauth-protected-resource": typeof DotwellKnownOauthProtectedResourceRouteWithChildren;
   "/.well-known/openid-configuration": typeof DotwellKnownOpenidConfigurationRoute;
@@ -285,6 +299,7 @@ export interface FileRoutesByFullPath {
   "/auth/": typeof AuthIndexRoute;
   "/dashboard/": typeof DashboardIndexRoute;
   "/mcp/": typeof McpIndexRoute;
+  "/dashboard/settings/integrations": typeof DashboardSettingsIntegrationsRouteRoute;
   "/.well-known/mcp/server-card.json": typeof DotwellKnownMcpServerCardDotjsonRoute;
   "/.well-known/oauth-authorization-server/$": typeof DotwellKnownOauthAuthorizationServerSplatRoute;
   "/.well-known/oauth-protected-resource/$": typeof DotwellKnownOauthProtectedResourceSplatRoute;
@@ -306,6 +321,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   "/schema.json": typeof SchemaDotjsonRoute;
   "/$username/$slug": typeof UsernameSlugRoute;
+  "/.well-known/$": typeof DotwellKnownSplatRoute;
   "/.well-known/oauth-authorization-server": typeof DotwellKnownOauthAuthorizationServerRouteWithChildren;
   "/.well-known/oauth-protected-resource": typeof DotwellKnownOauthProtectedResourceRouteWithChildren;
   "/.well-known/openid-configuration": typeof DotwellKnownOpenidConfigurationRoute;
@@ -323,6 +339,7 @@ export interface FileRoutesByTo {
   "/auth": typeof AuthIndexRoute;
   "/dashboard": typeof DashboardIndexRoute;
   "/mcp": typeof McpIndexRoute;
+  "/dashboard/settings/integrations": typeof DashboardSettingsIntegrationsRouteRoute;
   "/.well-known/mcp/server-card.json": typeof DotwellKnownMcpServerCardDotjsonRoute;
   "/.well-known/oauth-authorization-server/$": typeof DotwellKnownOauthAuthorizationServerSplatRoute;
   "/.well-known/oauth-protected-resource/$": typeof DotwellKnownOauthProtectedResourceSplatRoute;
@@ -349,6 +366,7 @@ export interface FileRoutesById {
   "/schema.json": typeof SchemaDotjsonRoute;
   "/builder/$resumeId": typeof BuilderResumeIdRouteRouteWithChildren;
   "/$username/$slug": typeof UsernameSlugRoute;
+  "/.well-known/$": typeof DotwellKnownSplatRoute;
   "/.well-known/oauth-authorization-server": typeof DotwellKnownOauthAuthorizationServerRouteWithChildren;
   "/.well-known/oauth-protected-resource": typeof DotwellKnownOauthProtectedResourceRouteWithChildren;
   "/.well-known/openid-configuration": typeof DotwellKnownOpenidConfigurationRoute;
@@ -366,6 +384,7 @@ export interface FileRoutesById {
   "/auth/": typeof AuthIndexRoute;
   "/dashboard/": typeof DashboardIndexRoute;
   "/mcp/": typeof McpIndexRoute;
+  "/dashboard/settings/integrations": typeof DashboardSettingsIntegrationsRouteRoute;
   "/.well-known/mcp/server-card.json": typeof DotwellKnownMcpServerCardDotjsonRoute;
   "/.well-known/oauth-authorization-server/$": typeof DotwellKnownOauthAuthorizationServerSplatRoute;
   "/.well-known/oauth-protected-resource/$": typeof DotwellKnownOauthProtectedResourceSplatRoute;
@@ -393,6 +412,7 @@ export interface FileRouteTypes {
     | "/schema.json"
     | "/builder/$resumeId"
     | "/$username/$slug"
+    | "/.well-known/$"
     | "/.well-known/oauth-authorization-server"
     | "/.well-known/oauth-protected-resource"
     | "/.well-known/openid-configuration"
@@ -409,6 +429,7 @@ export interface FileRouteTypes {
     | "/auth/"
     | "/dashboard/"
     | "/mcp/"
+    | "/dashboard/settings/integrations"
     | "/.well-known/mcp/server-card.json"
     | "/.well-known/oauth-authorization-server/$"
     | "/.well-known/oauth-protected-resource/$"
@@ -430,6 +451,7 @@ export interface FileRouteTypes {
   to:
     | "/schema.json"
     | "/$username/$slug"
+    | "/.well-known/$"
     | "/.well-known/oauth-authorization-server"
     | "/.well-known/oauth-protected-resource"
     | "/.well-known/openid-configuration"
@@ -447,6 +469,7 @@ export interface FileRouteTypes {
     | "/auth"
     | "/dashboard"
     | "/mcp"
+    | "/dashboard/settings/integrations"
     | "/.well-known/mcp/server-card.json"
     | "/.well-known/oauth-authorization-server/$"
     | "/.well-known/oauth-protected-resource/$"
@@ -472,6 +495,7 @@ export interface FileRouteTypes {
     | "/schema.json"
     | "/builder/$resumeId"
     | "/$username/$slug"
+    | "/.well-known/$"
     | "/.well-known/oauth-authorization-server"
     | "/.well-known/oauth-protected-resource"
     | "/.well-known/openid-configuration"
@@ -489,6 +513,7 @@ export interface FileRouteTypes {
     | "/auth/"
     | "/dashboard/"
     | "/mcp/"
+    | "/dashboard/settings/integrations"
     | "/.well-known/mcp/server-card.json"
     | "/.well-known/oauth-authorization-server/$"
     | "/.well-known/oauth-protected-resource/$"
@@ -515,6 +540,7 @@ export interface RootRouteChildren {
   SchemaDotjsonRoute: typeof SchemaDotjsonRoute;
   BuilderResumeIdRouteRoute: typeof BuilderResumeIdRouteRouteWithChildren;
   UsernameSlugRoute: typeof UsernameSlugRoute;
+  DotwellKnownSplatRoute: typeof DotwellKnownSplatRoute;
   DotwellKnownOauthAuthorizationServerRoute: typeof DotwellKnownOauthAuthorizationServerRouteWithChildren;
   DotwellKnownOauthProtectedResourceRoute: typeof DotwellKnownOauthProtectedResourceRouteWithChildren;
   DotwellKnownOpenidConfigurationRoute: typeof DotwellKnownOpenidConfigurationRoute;
@@ -677,6 +703,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof DotwellKnownOauthAuthorizationServerRouteImport;
       parentRoute: typeof rootRouteImport;
     };
+    "/.well-known/$": {
+      id: "/.well-known/$";
+      path: "/.well-known/$";
+      fullPath: "/.well-known/$";
+      preLoaderRoute: typeof DotwellKnownSplatRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     "/$username/$slug": {
       id: "/$username/$slug";
       path: "/$username/$slug";
@@ -803,6 +836,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof DotwellKnownMcpServerCardDotjsonRouteImport;
       parentRoute: typeof rootRouteImport;
     };
+    "/dashboard/settings/integrations": {
+      id: "/dashboard/settings/integrations";
+      path: "/settings/integrations";
+      fullPath: "/dashboard/settings/integrations";
+      preLoaderRoute: typeof DashboardSettingsIntegrationsRouteRouteImport;
+      parentRoute: typeof DashboardRouteRoute;
+    };
     "/dashboard/settings/authentication/": {
       id: "/dashboard/settings/authentication/";
       path: "/settings/authentication";
@@ -855,6 +895,7 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 
 interface DashboardRouteRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute;
+  DashboardSettingsIntegrationsRouteRoute: typeof DashboardSettingsIntegrationsRouteRoute;
   DashboardSettingsAiRoute: typeof DashboardSettingsAiRoute;
   DashboardSettingsApiKeysRoute: typeof DashboardSettingsApiKeysRoute;
   DashboardSettingsDangerZoneRoute: typeof DashboardSettingsDangerZoneRoute;
@@ -868,6 +909,8 @@ interface DashboardRouteRouteChildren {
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardSettingsIntegrationsRouteRoute:
+    DashboardSettingsIntegrationsRouteRoute,
   DashboardSettingsAiRoute: DashboardSettingsAiRoute,
   DashboardSettingsApiKeysRoute: DashboardSettingsApiKeysRoute,
   DashboardSettingsDangerZoneRoute: DashboardSettingsDangerZoneRoute,
@@ -932,6 +975,7 @@ const rootRouteChildren: RootRouteChildren = {
   SchemaDotjsonRoute: SchemaDotjsonRoute,
   BuilderResumeIdRouteRoute: BuilderResumeIdRouteRouteWithChildren,
   UsernameSlugRoute: UsernameSlugRoute,
+  DotwellKnownSplatRoute: DotwellKnownSplatRoute,
   DotwellKnownOauthAuthorizationServerRoute:
     DotwellKnownOauthAuthorizationServerRouteWithChildren,
   DotwellKnownOauthProtectedResourceRoute:

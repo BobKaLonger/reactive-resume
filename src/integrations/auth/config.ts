@@ -5,22 +5,26 @@ import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { dash } from "@better-auth/infra";
 import { oauthProvider } from "@better-auth/oauth-provider";
 import { passkey } from "@better-auth/passkey";
-import { BetterAuthError, betterAuth } from "better-auth";
+import { APIError, BetterAuthError, betterAuth } from "better-auth";
+import { createAuthMiddleware } from "better-auth/api";
 import { verifyAccessToken } from "better-auth/oauth2";
-import { admin, jwt, openAPI, type GenericOAuthConfig } from "better-auth/plugins";
+import { admin, jwt, type GenericOAuthConfig } from "better-auth/plugins";
 import { genericOAuth } from "better-auth/plugins/generic-oauth";
 import { twoFactor } from "better-auth/plugins/two-factor";
 import { username } from "better-auth/plugins/username";
 import { eq, or } from "drizzle-orm";
+import { createElement } from "react";
 
 import { env } from "@/utils/env";
 import { hashPassword, verifyPassword } from "@/utils/password";
 import { generateId, toUsername } from "@/utils/string";
+import { isAllowedOAuthRedirectUri, parseAllowedHostList } from "@/utils/url-security";
 
 import { schema } from "../drizzle";
 import { db } from "../drizzle/client";
 import { lower } from "../drizzle/helpers";
 import { sendEmail } from "../email/service";
+import { ResetPasswordEmail, VerifyEmail, VerifyEmailChange } from "../email/templates/auth";
 
 export const authBaseUrl = process.env.BETTER_AUTH_URL ?? env.APP_URL;
 
@@ -51,8 +55,9 @@ function isCustomOAuthProviderEnabled() {
 }
 
 function getTrustedOrigins(): string[] {
+  const normalizeOrigin = (origin: string): string => origin.replace(/\/$/, "");
   const appUrl = new URL(env.APP_URL);
-  const trustedOrigins = new Set<string>([appUrl.origin.replace(/\/$/, "")]);
+  const trustedOrigins = new Set<string>([normalizeOrigin(appUrl.origin)]);
   const LOCAL_ORIGINS = ["localhost", "127.0.0.1"];
 
   if (LOCAL_ORIGINS.includes(appUrl.hostname)) {
@@ -60,7 +65,7 @@ function getTrustedOrigins(): string[] {
       if (hostname !== appUrl.hostname) {
         const altUrl = new URL(env.APP_URL);
         altUrl.hostname = hostname;
-        trustedOrigins.add(altUrl.origin.replace(/\/$/, ""));
+        trustedOrigins.add(normalizeOrigin(altUrl.origin));
       }
     }
   }
@@ -69,6 +74,7 @@ function getTrustedOrigins(): string[] {
 }
 
 const TRUSTED_ORIGINS = getTrustedOrigins();
+const OAUTH_DYNAMIC_CLIENT_REDIRECT_HOSTS = parseAllowedHostList(env.OAUTH_DYNAMIC_CLIENT_REDIRECT_HOSTS);
 
 async function findExistingUserByEmail(email: string) {
   const normalizedEmail = email.trim().toLowerCase();
@@ -234,6 +240,41 @@ const getAuthConfig = () => {
 
     telemetry: { enabled: false },
     trustedOrigins: TRUSTED_ORIGINS,
+    rateLimit: {
+      enabled: true,
+      window: 60,
+      max: 60,
+      customRules: {
+        "/sign-in/email": { window: 60, max: 5 },
+        "/sign-up/email": { window: 60, max: 3 },
+        "/request-password-reset": { window: 600, max: 3 },
+        "/send-verification-email": { window: 600, max: 3 },
+        "/two-factor/verify-otp": { window: 600, max: 5 },
+        "/two-factor/verify-totp": { window: 600, max: 5 },
+        "/two-factor/verify-backup-code": { window: 600, max: 5 },
+        "/is-username-available": { window: 60, max: 20 },
+      },
+    },
+
+    hooks: {
+      before: createAuthMiddleware(async (ctx) => {
+        if (!ctx.path.includes("/oauth2/register")) return;
+
+        const body = ctx.body as { redirect_uris?: unknown } | undefined;
+        const redirectUris = Array.isArray(body?.redirect_uris) ? body.redirect_uris : [];
+
+        for (const uri of redirectUris) {
+          if (typeof uri !== "string") {
+            throw new APIError("BAD_REQUEST", { message: "redirect_uris entries must be strings" });
+          }
+          if (!isAllowedOAuthRedirectUri(uri, TRUSTED_ORIGINS, OAUTH_DYNAMIC_CLIENT_REDIRECT_HOSTS)) {
+            throw new APIError("BAD_REQUEST", {
+              message: "redirect_uri is not allowed for dynamic client registration",
+            });
+          }
+        }
+      }),
+    },
 
     advanced: {
       database: { generateId },
@@ -252,7 +293,7 @@ const getAuthConfig = () => {
         await sendEmail({
           to: user.email,
           subject: "Reset your password",
-          text: `You requested a password reset for your Reactive Resume account.\n\nTo reset your password, please visit the following URL:\n${url}.\n\nIf you did not request a password reset, please ignore this email.`,
+          react: createElement(ResetPasswordEmail, { url }),
         });
       },
       password: {
@@ -268,7 +309,7 @@ const getAuthConfig = () => {
         await sendEmail({
           to: user.email,
           subject: "Verify your email",
-          text: `You recently signed up for an account on Reactive Resume.\n\nTo verify your email, please visit the following URL:\n${url}`,
+          react: createElement(VerifyEmail, { url }),
         });
       },
     },
@@ -280,7 +321,7 @@ const getAuthConfig = () => {
           await sendEmail({
             to: newEmail,
             subject: "Verify your new email",
-            text: `You recently requested to change your email on Reactive Resume from ${user.email} to ${newEmail}.\n\nTo verify this change, please visit the following URL:\n${url}\n\nIf you did not request this change, please ignore this email.`,
+            react: createElement(VerifyEmailChange, { url, previousEmail: user.email, newEmail }),
           });
         },
       },
@@ -341,18 +382,27 @@ const getAuthConfig = () => {
     plugins: [
       jwt(),
       admin(),
-      openAPI(),
       passkey(),
       genericOAuth({ config: authConfigs }),
       twoFactor({ issuer: "Reactive Resume" }),
-      apiKey({ enableSessionForAPIKeys: true, rateLimit: { enabled: false } }),
+      apiKey({ enableSessionForAPIKeys: true, rateLimit: { enabled: true } }),
       dash({ apiKey: env.BETTER_AUTH_API_KEY, activityTracking: { enabled: true } }),
       oauthProvider({
         loginPage: "/auth/oauth",
         consentPage: "/auth/oauth",
         validAudiences: OAUTH_AUDIENCES,
         allowDynamicClientRegistration: true,
+        // Required for MCP client onboarding (RFC 7591). Phishing vector is closed by the
+        // redirect_uri allowlist in the hooks.before middleware above and in src/routes/api/auth.$.ts.
         allowUnauthenticatedClientRegistration: true,
+        rateLimit: {
+          register: { window: 60, max: 5 },
+          authorize: { window: 60, max: 30 },
+          token: { window: 60, max: 20 },
+          introspect: { window: 60, max: 60 },
+          revoke: { window: 60, max: 30 },
+          userinfo: { window: 60, max: 60 },
+        },
         silenceWarnings: { oauthAuthServerConfig: true },
       }),
       username({

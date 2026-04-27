@@ -38,9 +38,11 @@ import {
   TextUnderlineIcon,
   TrashSimpleIcon,
 } from "@phosphor-icons/react";
+import Color from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
 import { TableKit } from "@tiptap/extension-table";
 import TextAlign from "@tiptap/extension-text-align";
+import { TextStyle } from "@tiptap/extension-text-style";
 import {
   type Editor,
   EditorContent,
@@ -65,13 +67,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { PopoverHeader, PopoverTitle, PopoverTrigger } from "@/components/ui/popover";
 import { usePrompt } from "@/hooks/use-prompt";
 import { isRTL } from "@/utils/locale";
 import { sanitizeHtml } from "@/utils/sanitize";
 import { cn } from "@/utils/style";
 
 import { Toggle } from "../ui/toggle";
+import { ColorPicker } from "./color-picker";
 import styles from "./rich-input.module.css";
+
+const defaultTextColor = "rgba(0, 0, 0, 1)";
 
 const extensions = [
   StarterKit.configure({
@@ -88,6 +94,8 @@ const extensions = [
       protocols: ["http", "https"],
     },
   }),
+  TextStyle,
+  Color,
   Highlight.configure({
     HTMLAttributes: {
       class: "rounded-md px-0.5 py-px",
@@ -172,8 +180,16 @@ export function RichInput({ value, onChange, style, className, editorClassName, 
         <Dialog open={isFullscreen} onOpenChange={setIsFullscreen}>
           <DialogContent className="flex h-[95svh] max-h-none! w-[95svw] max-w-none! flex-col p-4 sm:max-w-none! 2xl:max-w-none!">
             <div className="sr-only">
-              <DialogTitle>Fullscreen Editor</DialogTitle>
-              <DialogDescription>Edit content in fullscreen mode</DialogDescription>
+              <DialogTitle>
+                <Trans comment="Screen reader title for the fullscreen rich-text editor dialog">
+                  Fullscreen Editor
+                </Trans>
+              </DialogTitle>
+              <DialogDescription>
+                <Trans comment="Screen reader description for the fullscreen rich-text editor dialog">
+                  Edit content in fullscreen mode
+                </Trans>
+              </DialogDescription>
             </div>
             {editorElement}
           </DialogContent>
@@ -222,6 +238,12 @@ function EditorToolbar({ editor, isFullscreen }: { editor: Editor; isFullscreen:
         isHighlight: ctx.editor.isActive("highlight") ?? false,
         canHighlight: ctx.editor.can().chain().toggleHighlight().run() ?? false,
         toggleHighlight: () => ctx.editor.chain().focus().toggleHighlight().run(),
+
+        // Text Color
+        textColor: (ctx.editor.getAttributes("textStyle").color as string | undefined) ?? null,
+        canTextColor: ctx.editor.can().chain().setColor(defaultTextColor).run() ?? false,
+        setTextColor: (color: string) => ctx.editor.chain().focus().setColor(color).run(),
+        unsetTextColor: () => ctx.editor.chain().focus().unsetColor().run(),
 
         // Heading 1
         isHeading1: ctx.editor.isActive("heading", { level: 1 }) ?? false,
@@ -417,6 +439,66 @@ function EditorToolbar({ editor, isFullscreen }: { editor: Editor; isFullscreen:
       >
         <HighlighterCircleIcon className="size-3.5" />
       </Toggle>
+
+      <ColorPicker
+        defaultValue={defaultTextColor}
+        value={state.textColor ?? undefined}
+        onChange={state.setTextColor}
+        trigger={
+          <PopoverTrigger
+            render={
+              <Button
+                size={isFullscreen ? "lg" : "sm"}
+                tabIndex={-1}
+                variant="ghost"
+                className={cn("rounded-none px-2", state.textColor && "bg-muted text-foreground")}
+                title={t`Text Color`}
+                disabled={!state.canTextColor}
+              >
+                <span className="flex flex-col items-center leading-none">
+                  <span className="text-xs font-semibold">A</span>
+                  <span
+                    className="mt-0.5 h-0.5 w-3 rounded-full"
+                    style={{ backgroundColor: state.textColor ?? "currentColor" }}
+                  />
+                </span>
+              </Button>
+            }
+          />
+        }
+      >
+        <PopoverHeader className="flex-row items-start justify-between gap-2">
+          <div className="flex items-center gap-2.5">
+            <span
+              className="grid size-9 place-items-center rounded-lg border border-border bg-muted/60 text-sm font-semibold shadow-xs"
+              style={{ color: state.textColor ?? "currentColor" }}
+            >
+              A
+            </span>
+
+            <div className="flex flex-col gap-0.5">
+              <PopoverTitle>
+                <Trans>Text Color</Trans>
+              </PopoverTitle>
+              <span className="text-xs text-muted-foreground">
+                <Trans comment="Preset or custom shade refer to the color picker">
+                  Choose a preset or custom shade.
+                </Trans>
+              </span>
+            </div>
+          </div>
+
+          <Button
+            size="xs"
+            variant="ghost"
+            className="shrink-0"
+            onClick={state.unsetTextColor}
+            disabled={!state.textColor}
+          >
+            <Trans comment="Clear the text color">Clear</Trans>
+          </Button>
+        </PopoverHeader>
+      </ColorPicker>
 
       <div className="mx-1 h-5 w-px bg-border" />
 

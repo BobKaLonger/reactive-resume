@@ -1,4 +1,5 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { useEffect } from "react";
 import { z } from "zod";
@@ -6,13 +7,25 @@ import { z } from "zod";
 import { LoadingScreen } from "@/components/layout/loading-screen";
 import { ResumePreview } from "@/components/resume/preview";
 import { useResumeStore } from "@/components/resume/store/resume";
-import { getORPCClient } from "@/integrations/orpc/client";
+import { resumeService } from "@/integrations/orpc/services/resume";
 import { env } from "@/utils/env";
 import { verifyPrinterToken } from "@/utils/printer-token";
 
 const searchSchema = z.object({
   token: z.string().catch(""),
 });
+
+const getResumeForPrinterFn = createServerFn({ method: "GET" })
+  .inputValidator(z.object({ id: z.string(), token: z.string() }))
+  .handler(({ data }) => {
+    return resumeService.getByIdForPrinter({ id: data.id, printerToken: data.token });
+  });
+
+function assertValidPrinterToken(token: string, resumeId: string): void {
+  const tokenResumeId = verifyPrinterToken(token);
+  if (tokenResumeId === resumeId) return;
+  throw new Error("Printer token does not match resume ID");
+}
 
 export const Route = createFileRoute("/printer/$resumeId")({
   component: RouteComponent,
@@ -21,17 +34,14 @@ export const Route = createFileRoute("/printer/$resumeId")({
     if (env.FLAG_DEBUG_PRINTER) return;
 
     try {
-      // Verify the token and ensure it matches the resume ID
-      const tokenResumeId = verifyPrinterToken(search.token);
-      if (tokenResumeId !== params.resumeId) throw new Error();
+      assertValidPrinterToken(search.token, params.resumeId);
     } catch {
-      // Invalid or missing token - throw error to be caught by error handler
       throw redirect({ to: "/", search: {}, throw: true });
     }
   },
-  loader: async ({ params }) => {
-    const client = getORPCClient();
-    const resume = await client.resume.getByIdForPrinter({ id: params.resumeId });
+  loaderDeps: ({ search }) => ({ token: search.token }),
+  loader: async ({ params, deps }) => {
+    const resume = await getResumeForPrinterFn({ data: { id: params.resumeId, token: deps.token } });
 
     return { resume };
   },

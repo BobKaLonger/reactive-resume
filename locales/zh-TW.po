@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-14 12:40\n"
+"PO-Revision-Date: 2026-04-27 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -53,35 +53,33 @@ msgstr "{0, plural, other {# 個職位}}"
 msgid "{0} / {1} requests used"
 msgstr "{0} / {1} 已使用的請求"
 
-#. placeholder {0}: Math.floor(diffDays / 30)
-#: src/routes/dashboard/job-search/-components/job-utils.ts
-msgid "{0} months ago"
-msgstr "{0} 幾個月前"
-
-#. placeholder {0}: Math.floor(diffDays / 7)
-#: src/routes/dashboard/job-search/-components/job-utils.ts
-msgid "{0} weeks ago"
-msgstr "{0} 週前"
-
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "{column, plural, one {# Column} other {# Columns}}"
 msgstr "{column, plural, other {# 欄}}"
 
 #: src/routes/dashboard/job-search/-components/job-utils.ts
-msgid "{diffDays} days ago"
-msgstr "{diffDays} 天前"
+msgid "{diffDays, plural, one {# day ago} other {# days ago}}"
+msgstr "{diffDays, plural, one {# 天前} other {# 天前}}"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "{months, plural, one {# month ago} other {# months ago}}"
+msgstr "{months, plural, one {# 月前} other {# 月前}}"
+
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "{used} of {limit} requests used ({remaining} remaining)"
 msgstr "{used} 已使用的 {limit} 請求 ({remaining} 剩餘)"
+
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "{weeks, plural, one {# week ago} other {# weeks ago}}"
+msgstr "{weeks, plural, one {# 週前} other {# 週前}}"
 
 #: src/routes/_home/-sections/hero.tsx
 msgid "<0>Finally,</0><1>A free and open-source resume builder</1>"
 msgstr "<0>終於有了，</0><1>免費且開放原始碼的履歷建立工具</1>"
 
 #: src/routes/_home/-sections/faq.tsx
-msgctxt "Every word needs to be wrapped in a tag"
+msgctxt "Home page FAQ section heading with each word visually separated into individual spans"
 msgid "<0>Frequently</0><1>Asked</1><2>Questions</2>"
 msgstr "<0>常見</0><1>問</1><2>題</2>"
 
@@ -134,10 +132,10 @@ msgstr "新的驗證連結已傳送至您的電子郵件地址。請檢查收件
 msgid "A passion project by <0>Amruth Pillai</0>."
 msgstr "一個由 <0>Amruth Pillai</0> 發起的熱血專案。"
 
-#: src/dialogs/resume/index.tsx
-#: src/dialogs/resume/index.tsx
-msgid "A resume with this slug already exists."
-msgstr "已有使用這個標示碼的履歷。"
+#. Error description when generated slug for duplicated tailored resume already exists
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "A resume with this slug already exists. Please try again."
+msgstr "此標題的簡歷已經存在。請再試一次。"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "A4"
@@ -155,6 +153,11 @@ msgstr "使用 API 以程式化方式存取您的履歷與資料。"
 msgid "Add a custom field"
 msgstr "新增自訂欄位"
 
+#: src/components/input/chip-input.tsx
+msgid "Add a keyword..."
+msgstr "新增關鍵字..."
+
+#. Tooltip for action button that opens URL label editor
 #: src/components/input/url-input.tsx
 msgid "Add a label to the URL"
 msgstr "為此 URL 新增標籤"
@@ -224,6 +227,10 @@ msgstr "在後方新增欄"
 msgid "Add Column Before"
 msgstr "在前方新增欄"
 
+#: src/components/input/chip-input.tsx
+msgid "Add keyword"
+msgstr "新增關鍵字"
+
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Add multiple roles to show career progression at the same company."
 msgstr "新增多個職位以展示在同一公司的職涯晉升情況。"
@@ -258,7 +265,6 @@ msgid "Afrikaans"
 msgstr "南非荷蘭語"
 
 #: src/dialogs/resume/import.tsx
-#: src/dialogs/resume/import.tsx
 msgid "AI"
 msgstr "AI"
 
@@ -287,6 +293,7 @@ msgstr "阿姆哈拉語"
 msgid "An error occurred while loading the page."
 msgstr "載入頁面時發生錯誤。"
 
+#. Fallback toast when importing a resume fails for an unknown reason
 #: src/dialogs/resume/import.tsx
 msgid "An unknown error occurred while importing your resume."
 msgstr "匯入履歷時發生未知錯誤。"
@@ -303,11 +310,15 @@ msgstr "分析..."
 msgid "And many more..."
 msgstr "還有很多……"
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Anthropic Claude"
+msgstr "克勞德人類"
+
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Any level"
 msgstr "任何等級"
 
-#: src/routes/dashboard/job-search/-components/search-filters.tsx
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Any time"
 msgstr "任何時間"
@@ -332,11 +343,10 @@ msgstr "任何擁有連結的人都可以檢視和下載履歷。"
 msgid "API Access"
 msgstr "API 存取"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "API Key"
 msgstr "API Key"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/api-keys.tsx
@@ -344,10 +354,11 @@ msgid "API Keys"
 msgstr "API Key"
 
 #: src/routes/dashboard/settings/api-keys.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "API Reference"
 msgstr "API 參考文件"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "API Usage"
 msgstr "API 使用方式"
 
@@ -363,6 +374,11 @@ msgstr "應用程式統計資料"
 msgid "Apply"
 msgstr "申請"
 
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Apply for this job"
+msgstr "申請此工作"
+
+#. Fallback publisher name for a third-party job application link
 #: src/routes/dashboard/job-search/-components/job-detail.tsx
 msgid "Apply Link"
 msgstr "申請連結"
@@ -382,6 +398,14 @@ msgstr "確定要關閉此對話框嗎？"
 #: src/routes/dashboard/settings/api-keys.tsx
 msgid "Are you sure you want to delete this API key?"
 msgstr "確定要刪除此 API Key 嗎？"
+
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
+msgid "Are you sure you want to delete this custom section?"
+msgstr "您確定要刪除這個自訂區塊嗎？"
+
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
+msgid "Are you sure you want to delete this item?"
+msgstr "您確定要刪除此項目？"
 
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
@@ -403,14 +427,16 @@ msgstr "您確定要鎖定這份履歷嗎？"
 msgid "Are you sure you want to remove password protection?"
 msgstr "您確定要移除密碼保護嗎？"
 
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
+msgid "Are you sure you want to reset this section?"
+msgstr "您確定要重設此部分嗎？"
+
 #: src/dialogs/resume/sections/education.tsx
 msgid "Area of Study"
 msgstr "學習領域"
 
 #: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
-#: src/routes/dashboard/-components/sidebar.tsx
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Artificial Intelligence"
 msgstr "人工智慧"
 
@@ -418,7 +444,6 @@ msgstr "人工智慧"
 msgid "Aspect Ratio"
 msgstr "顯示比例"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/authentication/index.tsx
@@ -443,6 +468,7 @@ msgstr "獎項"
 msgid "Azerbaijani"
 msgstr "亞塞拜然語"
 
+#. Secondary navigation button on 2FA verification screen
 #: src/routes/auth/verify-2fa.tsx
 msgid "Back to Login"
 msgstr "返回登入"
@@ -455,7 +481,7 @@ msgstr "背景顏色"
 msgid "Backup codes copied to clipboard."
 msgstr "備份代碼已複製到剪貼簿。"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Base URL (Optional)"
 msgstr "基底 URL（選填）"
 
@@ -492,6 +518,7 @@ msgstr "邊框弧度"
 msgid "Border Width"
 msgstr "邊框寬度"
 
+#. Screen-reader dialog title for the command palette in the resume builder
 #: src/components/command-palette/index.tsx
 msgid "Builder Command Palette"
 msgstr "編輯器指令選單"
@@ -504,6 +531,7 @@ msgstr "保加利亞語"
 msgid "Bullet List"
 msgstr "項目符號清單"
 
+#. Tagline shown in app footer/about area
 #: src/components/ui/copyright.tsx
 #: src/routes/_home/-sections/features.tsx
 #: src/routes/_home/-sections/prefooter.tsx
@@ -518,38 +546,33 @@ msgstr "我可以自訂範本嗎？"
 msgid "Can I export my resume to PDF?"
 msgstr "我可以把履歷匯出成 PDF 嗎？"
 
+#. API key deletion confirmation dialog cancel action in settings
+#. Account deletion confirmation dialog cancel action in danger zone
+#. Confirmation dialog button label to abort deleting a custom section in resume builder
+#. Confirmation dialog button label to abort deleting a section item in resume builder
+#. Confirmation dialog button label to abort resetting a resume section
+#. Profile settings form action to discard unsaved edits
+#. Secondary action button to close two-factor setup dialog
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/dialogs/resume/sections/award.tsx
-#: src/dialogs/resume/sections/award.tsx
-#: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/cover-letter.tsx
-#: src/dialogs/resume/sections/cover-letter.tsx
-#: src/dialogs/resume/sections/custom.tsx
 #: src/dialogs/resume/sections/custom.tsx
 #: src/dialogs/resume/sections/education.tsx
-#: src/dialogs/resume/sections/education.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/interest.tsx
-#: src/dialogs/resume/sections/interest.tsx
-#: src/dialogs/resume/sections/language.tsx
 #: src/dialogs/resume/sections/language.tsx
 #: src/dialogs/resume/sections/profile.tsx
-#: src/dialogs/resume/sections/profile.tsx
-#: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/publication.tsx
-#: src/dialogs/resume/sections/publication.tsx
-#: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/skill.tsx
-#: src/dialogs/resume/sections/skill.tsx
 #: src/dialogs/resume/sections/summary-item.tsx
-#: src/dialogs/resume/sections/summary-item.tsx
-#: src/dialogs/resume/sections/volunteer.tsx
 #: src/dialogs/resume/sections/volunteer.tsx
 #: src/hooks/use-prompt.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 #: src/routes/dashboard/settings/api-keys.tsx
@@ -611,9 +634,19 @@ msgstr "中文（簡體）"
 msgid "Chinese (Traditional)"
 msgstr "中文（繁體）"
 
+#. Preset or custom shade refer to the color picker
+#: src/components/input/rich-input.tsx
+msgid "Choose a preset or custom shade."
+msgstr "選擇預設或自訂燈罩。"
+
 #: src/components/level/combobox.tsx
 msgid "Circle"
 msgstr "圓形"
+
+#. Clear the text color
+#: src/components/input/rich-input.tsx
+msgid "Clear"
+msgstr "清除"
 
 #: src/routes/dashboard/job-search/index.tsx
 msgid "Clear all"
@@ -637,6 +670,17 @@ msgstr "程式碼區塊"
 msgid "Columns"
 msgstr "欄"
 
+#. Accessible label for command list region inside command palette
+#. Accessible label for the command palette dialog
+#: src/components/command-palette/index.tsx
+msgid "Command Palette"
+msgstr "指令選項板"
+
+#. Accessible label for command palette dialog when browsing a nested command page
+#: src/components/command-palette/index.tsx
+msgid "Command Palette - {currentPage}"
+msgstr "指令選項板 - {currentPage}"
+
 #: src/routes/_home/-sections/footer.tsx
 msgid "Community"
 msgstr "社群"
@@ -653,6 +697,8 @@ msgstr "完全免費，永遠如此，沒有任何隱藏費用。"
 msgid "Configure Job Search"
 msgstr "設定工作搜尋"
 
+#. Account deletion confirmation dialog confirm action in danger zone
+#. Create API key dialog acknowledgment action after copying
 #: src/dialogs/api-key/create.tsx
 #: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
@@ -660,6 +706,7 @@ msgstr "設定工作搜尋"
 msgid "Confirm"
 msgstr "確認"
 
+#. Authentication settings action to link a social login provider
 #: src/routes/dashboard/settings/authentication/-components/social-provider.tsx
 msgid "Connect"
 msgstr "連結"
@@ -669,8 +716,9 @@ msgstr "連結"
 msgid "Content"
 msgstr "內容"
 
-#: src/dialogs/auth/enable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx
+#. Button label to continue to dashboard after successful registration
+#. Final action button after saving backup codes
+#. Primary action button to proceed to next step in two-factor setup
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/routes/auth/register.tsx
 msgid "Continue"
@@ -693,6 +741,7 @@ msgstr "承包商"
 msgid "Contributions fund bug fixes, security updates, and continuous improvements to keep the app running smoothly."
 msgstr "捐款將用於錯誤修正、安全性更新與持續改進，確保應用程式穩定運作。"
 
+#. Action button to copy two-factor backup codes to clipboard
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Copy"
 msgstr "複製"
@@ -713,19 +762,54 @@ msgstr "複製這組私密金鑰，並在您的應用程式中使用它來存取
 msgid "Copy URL"
 msgstr "複製 URL"
 
+#. Error description when syncing newly detected skills to source resume fails due to invalid patch
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Could not apply skill updates to your original resume."
+msgstr "無法將技能更新套用至原始履歷。"
+
+#. Fallback error description when duplicating a resume for tailoring fails
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Could not duplicate your resume."
+msgstr "無法複製您的簡歷。"
+
 #: src/routes/dashboard/job-search/index.tsx
 msgid "Could not fetch jobs"
 msgstr "無法取得工作"
+
+#. Error shown when job search API is unavailable while searching jobs
+#: src/routes/dashboard/job-search/-components/use-job-search.ts
+msgid "Could not fetch jobs from JSearch API. Please try again."
+msgstr "無法從 JSearch API 取得工作。請再試一次。"
+
+#. Error shown when JSearch API connection test fails in job search settings
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
+msgid "Could not reach JSearch API. Check your API key and try again."
+msgstr "無法連線到 JSearch API。請檢查您的 API 金鑰，然後再試一次。"
+
+#. Error description when AI provider cannot be reached during resume analysis
+#. Error description when AI provider is unreachable during resume tailoring
+#. Error shown when AI provider is unreachable during PDF/DOCX resume import
+#. Error shown when the configured AI provider cannot be reached during connection test
+#: src/dialogs/resume/import.tsx
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Could not reach the AI provider. Please try again."
+msgstr "無法連絡 AI 提供者。請再試一次。"
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Country"
 msgstr "國家"
 
+#. Fallback title for a custom cover letter item in resume builder when recipient is empty
+#. Fallback title for a custom cover letter item in resume builder when recipient is unavailable
 #: src/dialogs/resume/sections/custom.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/utils/resume/section.tsx
 msgid "Cover Letter"
 msgstr "求職信"
 
+#. Create API key dialog submit action
 #: src/dialogs/api-key/create.tsx
 #: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/award.tsx
@@ -830,11 +914,20 @@ msgstr "建立履歷範例"
 msgid "Create as many resumes as you want, without limits."
 msgstr "您可以不設限地建立任意數量的履歷。"
 
+#. Call-to-action link from login page to account registration page
+#: src/routes/auth/login.tsx
+msgid "Create one now"
+msgstr "立即建立"
+
+#. Accessible label for create-resume split button group
+#: src/dialogs/resume/index.tsx
+msgid "Create resume with options"
+msgstr "使用選項建立履歷表"
+
 #: src/dialogs/api-key/create.tsx
 msgid "Creating your API key..."
 msgstr "正在建立您的 API Key…"
 
-#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/index.tsx
 msgid "Creating your resume..."
 msgstr "正在建立您的履歷…"
@@ -843,10 +936,19 @@ msgstr "正在建立您的履歷…"
 msgid "Current Password"
 msgstr "目前密碼"
 
+#: src/components/input/color-picker.tsx
+msgid "Custom"
+msgstr "自訂"
+
 #: src/routes/_home/-sections/features.tsx
 #: src/utils/resume/section.tsx
 msgid "Custom CSS"
 msgstr "自訂 CSS"
+
+#. Authentication provider display name in account settings
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Custom OAuth"
+msgstr "自訂 OAuth"
 
 #: src/utils/resume/section.tsx
 msgid "Custom Sections"
@@ -857,7 +959,6 @@ msgid "Czech"
 msgstr "捷克語"
 
 #: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/danger-zone.tsx
 msgid "Danger Zone"
@@ -867,6 +968,7 @@ msgstr "危險操作"
 msgid "Danish"
 msgstr "丹麥語"
 
+#. Appearance theme option for dark mode
 #: src/components/user/dropdown-menu.tsx
 #: src/utils/theme.ts
 msgid "Dark"
@@ -894,6 +996,12 @@ msgstr "發佈日期"
 msgid "Degree"
 msgstr "學位"
 
+#. API key deletion confirmation dialog confirm action in settings
+#. Destructive confirmation button label when deleting a custom section in resume builder
+#. Destructive confirmation button label when deleting a section item in resume builder
+#. Passkey row action to remove the selected passkey
+#. Resume card context menu destructive action to remove a resume
+#. Resume card dropdown destructive action to remove a resume
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
@@ -915,6 +1023,10 @@ msgstr "刪除欄"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Delete Page"
 msgstr "刪除頁面"
+
+#: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+msgid "Delete picture"
+msgstr "刪除圖片"
 
 #: src/components/input/rich-input.tsx
 msgid "Delete Row"
@@ -942,7 +1054,6 @@ msgstr "正在刪除您的履歷…"
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/education.tsx
 #: src/dialogs/resume/sections/experience.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/publication.tsx
 #: src/dialogs/resume/sections/reference.tsx
@@ -967,6 +1078,7 @@ msgstr "直接申請"
 msgid "Direct apply only"
 msgstr "僅限直接申請"
 
+#. Destructive action button to turn off two-factor authentication
 #: src/dialogs/auth/disable-two-factor.tsx
 #: src/routes/dashboard/settings/authentication/-components/two-factor.tsx
 msgid "Disable 2FA"
@@ -976,7 +1088,7 @@ msgstr "停用雙因子驗證（2FA）"
 msgid "Disable Two-Factor Authentication"
 msgstr "停用雙因子驗證"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Disabled"
 msgstr "已停用"
 
@@ -984,6 +1096,7 @@ msgstr "已停用"
 msgid "Disabling two-factor authentication..."
 msgstr "正在停用雙因子驗證…"
 
+#. Authentication settings action to unlink a connected social login provider
 #: src/routes/dashboard/settings/authentication/-components/social-provider.tsx
 msgid "Disconnect"
 msgstr "中斷連結"
@@ -991,6 +1104,11 @@ msgstr "中斷連結"
 #: src/routes/_home/-sections/footer.tsx
 msgid "Discord"
 msgstr "Discord"
+
+#. Dialog description for the mobile sidebar panel
+#: src/components/ui/sidebar.tsx
+msgid "Displays the mobile sidebar."
+msgstr "顯示行動版側邊列。"
 
 #: src/routes/_home/-sections/footer.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
@@ -1005,8 +1123,8 @@ msgstr "沒有帳戶？<0/>"
 msgid "Donate to Reactive Resume"
 msgstr "捐助 Reactive Resume"
 
+#. Action button to download two-factor backup codes as a text file
 #: src/dialogs/auth/enable-two-factor.tsx
-#: src/routes/$username/$slug.tsx
 msgid "Download"
 msgstr "下載"
 
@@ -1034,10 +1152,6 @@ msgstr "下載 JSON"
 msgid "Download PDF"
 msgstr "下載 PDF"
 
-#: src/routes/$username/$slug.tsx
-msgid "Downloading..."
-msgstr "正在下載…"
-
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Downloads"
 msgstr "下載"
@@ -1046,6 +1160,8 @@ msgstr "下載"
 msgid "Drag and drop sections here to move them between columns"
 msgstr "將段落拖曳到這裡，以在不同欄之間移動它們"
 
+#. Resume card context menu action to create a copy
+#. Resume card dropdown action to create a copy
 #: src/dialogs/resume/index.tsx
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
@@ -1079,9 +1195,33 @@ msgstr "例如：150000"
 msgid "e.g. 50000"
 msgstr "例如：50000"
 
+#. Example placeholder text in job search input field
 #: src/routes/dashboard/job-search/index.tsx
 msgid "e.g. frontend developer jobs in Berlin"
 msgstr "例如：在柏林的前端開發人員工作"
+
+#. Example model-name placeholder in AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "e.g., gpt-4, claude-3-opus, gemini-pro"
+msgstr "例如，GPT-4、CLAUDE-3-OPUS、GEMINI-PRO"
+
+#. Screen reader label for button that edits a keyword chip. Variable is the current keyword text.
+#: src/components/input/chip-input.tsx
+msgid "Edit {chip}"
+msgstr "編輯 {chip}"
+
+#. Screen reader description for the fullscreen rich-text editor dialog
+#: src/components/input/rich-input.tsx
+msgid "Edit content in fullscreen mode"
+msgstr "在全螢幕模式下編輯內容"
+
+#: src/components/input/chip-input.tsx
+msgid "Edit keyword"
+msgstr "編輯關鍵字"
+
+#: src/components/input/chip-input.tsx
+msgid "Editing keyword..."
+msgstr "編輯關鍵字..."
 
 #: src/dialogs/resume/sections/custom.tsx
 #: src/utils/resume/section.tsx
@@ -1092,6 +1232,9 @@ msgstr "學歷"
 msgid "Email"
 msgstr "電子郵件"
 
+#. Label for email input on forgot-password form
+#. Label for email input on registration form
+#. Label for login identifier input that accepts email or username
 #: src/routes/auth/forgot-password.tsx
 #: src/routes/auth/login.tsx
 #: src/routes/auth/register.tsx
@@ -1108,7 +1251,7 @@ msgstr "啟用"
 msgid "Enable 2FA"
 msgstr "啟用雙因子驗證"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Enable AI Features"
 msgstr "啟用 AI 功能"
 
@@ -1116,7 +1259,7 @@ msgstr "啟用 AI 功能"
 msgid "Enable Two-Factor Authentication"
 msgstr "啟用雙因子驗證"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Enabled"
 msgstr "已啟用"
 
@@ -1168,7 +1311,7 @@ msgstr "請輸入您的密碼以確認設定雙因子驗證。啟用後，每次
 msgid "Enter your password to disable two-factor authentication. Your account will be less secure without 2FA enabled."
 msgstr "請輸入您的密碼以停用雙因子驗證。停用後，您的帳戶將會比較不安全。"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Enter your RapidAPI key"
 msgstr "輸入您的 RapidAPI 金鑰"
 
@@ -1176,7 +1319,7 @@ msgstr "輸入您的 RapidAPI 金鑰"
 msgid "Every contribution, big or small, makes a huge difference to the project.<0/>Thank you for your support!"
 msgstr "每一筆捐款，不論大小，都能為此專案帶來巨大的幫助。<0/>感謝您的支持！"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Everything entered here is stored locally on your browser. Your data is only sent to the server when making a request to the AI provider, and is never stored or logged on our servers."
 msgstr "您在這裡輸入的所有內容都會儲存在瀏覽器本機。只有在向 AI 服務提供者發出請求時，您的資料才會被傳送到伺服器，而且絕不會在我們的伺服器上儲存或記錄。"
 
@@ -1231,35 +1374,158 @@ msgstr "導出"
 msgid "Failed to analyze resume."
 msgstr "分析履歷失敗。"
 
+#. Fallback toast when creating an API key fails
+#: src/dialogs/api-key/create.tsx
+msgid "Failed to create API key. Please try again."
+msgstr "建立 API 金鑰失敗。請再試一次。"
+
+#. Fallback toast when account registration fails without a server error message
+#: src/routes/auth/register.tsx
+msgid "Failed to create your account. Please try again."
+msgstr "建立帳戶失敗。請再試一次。"
+
+#. Fallback toast when deleting a passkey fails
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Failed to delete passkey. Please try again."
 msgstr "刪除密碼失敗。請再試一次。"
+
+#. Fallback toast when deleting an API key fails
+#: src/routes/dashboard/settings/api-keys.tsx
+msgid "Failed to delete the API key. Please try again."
+msgstr "刪除 API 金鑰失敗。請再試一次。"
+
+#. Fallback toast when account deletion fails
+#: src/routes/dashboard/settings/danger-zone.tsx
+msgid "Failed to delete your account. Please try again."
+msgstr "刪除您的帳戶失敗。請再試一次。"
+
+#. Fallback toast when disabling two-factor authentication fails
+#: src/dialogs/auth/disable-two-factor.tsx
+msgid "Failed to disable two-factor authentication. Please try again."
+msgstr "停用雙因素驗證失敗。請再試一次。"
 
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Failed to duplicate resume"
 msgstr "履歷複製失敗"
 
+#. Fallback toast when enabling two-factor authentication fails
+#: src/dialogs/auth/enable-two-factor.tsx
+msgid "Failed to enable two-factor authentication. Please try again."
+msgstr "啟用雙重認證失敗。請再試一次。"
+
+#. Fallback toast when linking a social authentication provider fails
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Failed to link provider. Please try again."
+msgstr "連結供應商失敗。請重試。"
+
+#. Fallback toast when passkey registration fails
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Failed to register passkey. Please try again."
 msgstr "註冊密碼失敗。請再試一次。"
+
+#. Fallback toast when renaming a passkey fails
+#: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
+msgid "Failed to rename passkey. Please try again."
+msgstr "重新命名密碼失敗。請再試一次。"
+
+#. Fallback toast when requesting email change confirmation fails
+#: src/routes/dashboard/settings/profile.tsx
+msgid "Failed to request email change. Please try again."
+msgstr "要求變更電子郵件失敗。請再試一次。"
+
+#. Fallback toast when resending account verification email fails
+#: src/routes/dashboard/settings/profile.tsx
+msgid "Failed to resend verification email. Please try again."
+msgstr "重新傳送驗證電子郵件失敗。請再試一次。"
+
+#. Fallback toast when resetting password fails and no backend message is available
+#: src/routes/auth/reset-password.tsx
+msgid "Failed to reset your password. Please try again."
+msgstr "重設密碼失敗。請再試一次。"
+
+#. Fallback error shown when job search request fails
+#: src/routes/dashboard/job-search/-components/use-job-search.ts
+msgid "Failed to search jobs. Please try again."
+msgstr "搜尋工作失敗。請再試一次。"
+
+#. Fallback toast when requesting password reset email fails without backend message
+#: src/routes/auth/forgot-password.tsx
+msgid "Failed to send password reset email. Please try again."
+msgstr "發送密碼重設電子郵件失敗。請再試一次。"
 
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Failed to setup two-factor authentication."
 msgstr "設定雙因子驗證失敗。"
 
+#. Fallback toast when custom OAuth sign-in fails without a provider error message
+#. Fallback toast when passkey sign-in fails without an error message
+#. Fallback toast when sign-in fails and no server error message is available
+#. Fallback toast when social sign-in fails without a provider error message
+#: src/routes/auth/-components/social-auth.tsx
 #: src/routes/auth/login.tsx
 msgid "Failed to sign in. Please try again."
 msgstr "登入失敗。請再試一次。"
+
+#. Fallback toast when signing out fails
+#: src/components/user/dropdown-menu.tsx
+msgid "Failed to sign out. Please try again."
+msgstr "登出失敗。請再試一次。"
 
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Failed to sync skills"
 msgstr "同步技能失敗"
 
+#. Fallback toast when testing AI provider connection fails
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Failed to test AI provider connection. Please try again."
+msgstr "測試 AI 提供者連線失敗。請再試一次。"
+
+#. Fallback toast when testing RapidAPI job search connection fails
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
+msgid "Failed to test RapidAPI connection. Please try again."
+msgstr "測試 RapidAPI 連線失敗。請再試一次。"
+
+#. Fallback toast when unlinking a social authentication provider fails
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Failed to unlink provider. Please try again."
+msgstr "解除供應商的連結失敗。請再試一次。"
+
+#. Fallback toast when changing account password fails
+#: src/dialogs/auth/change-password.tsx
+msgid "Failed to update your password. Please try again."
+msgstr "更新密碼失敗。請再試一次。"
+
+#. Fallback toast when updating profile details fails
+#: src/routes/dashboard/settings/profile.tsx
+msgid "Failed to update your profile. Please try again."
+msgstr "更新您的個人資料失敗。請再試一次。"
+
+#. Fallback toast when uploading profile picture for resume fails
+#: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+msgid "Failed to upload picture. Please try again."
+msgstr "上傳圖片失敗。請再試一次。"
+
+#. Fallback toast when resume password verification fails unexpectedly
+#: src/routes/auth/resume-password.tsx
+msgid "Failed to verify the password. Please try again."
+msgstr "驗證密碼失敗。請再試一次。"
+
+#. Fallback toast when verifying a backup two-factor authentication code fails
+#: src/routes/auth/verify-2fa-backup.tsx
+msgid "Failed to verify your backup code. Please try again."
+msgstr "驗證您的備份碼失敗。請再試一次。"
+
+#. Fallback toast when verifying a two-factor authentication code fails
+#. Fallback toast when verifying two-factor setup code fails
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/routes/auth/verify-2fa.tsx
+msgid "Failed to verify your code. Please try again."
+msgstr "驗證您的驗證碼失敗。請再試一次。"
+
 #: src/routes/_home/-sections/features.tsx
 msgid "Features"
 msgstr "功能"
 
-#: src/routes/dashboard/resumes/index.tsx
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Filter by"
 msgstr "篩選條件"
@@ -1277,11 +1543,9 @@ msgid "Fluency"
 msgstr "流利程度"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Font Family"
 msgstr "字體"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Font Size"
 msgstr "字體大小"
@@ -1306,6 +1570,7 @@ msgstr "例如，您將這份履歷寄給哪些公司的相關資訊，或是工
 msgid "For security reasons, this key will only be displayed once."
 msgstr "基於安全考量，此金鑰只會顯示一次。"
 
+#. Link label to password reset page from login form
 #: src/routes/auth/login.tsx
 msgid "Forgot Password?"
 msgstr "忘記密碼？"
@@ -1331,6 +1596,7 @@ msgstr "自由格式"
 msgid "French"
 msgstr "法文"
 
+#. Layout editor toggle label that makes a page single-column
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Full Width"
 msgstr "全幅寬"
@@ -1343,9 +1609,19 @@ msgstr "全職"
 msgid "Fullscreen"
 msgstr "全螢幕"
 
+#. Screen reader title for the fullscreen rich-text editor dialog
+#: src/components/input/rich-input.tsx
+msgid "Fullscreen Editor"
+msgstr "全螢幕編輯器"
+
 #: src/dialogs/resume/index.tsx
 msgid "Generate a random name"
 msgstr "產生隨機名稱"
+
+#. Error description when generated patch operations cannot be applied to tailored resume
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Generated resume changes were invalid. Please try again."
+msgstr "產生的履歷變更無效。請再試一次。"
 
 #: src/utils/locale.ts
 msgid "German"
@@ -1363,10 +1639,18 @@ msgstr "獲得由 AI 驅動的深入履歷檢閱，包括整體評分、關鍵�
 msgid "Get Started"
 msgstr "開始使用"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Get your API key from RapidAPI by subscribing to the JSearch API."
 msgstr "透過訂閱 JSearch API，從 RapidAPI 取得您的 API 金鑰。"
 
+#. Authentication provider display name in account settings
+#. Brand name label for GitHub social sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "GitHub"
+msgstr "GitHub"
+
+#. Secondary navigation button on backup-code verification screen
 #: src/components/layout/not-found-screen.tsx
 #: src/routes/auth/verify-2fa-backup.tsx
 msgid "Go Back"
@@ -1377,12 +1661,29 @@ msgid "Go to dashboard"
 msgstr "前往儀表板"
 
 #: src/routes/dashboard/job-search/index.tsx
-msgid "Go to Settings"
-msgstr "前往設定"
+msgid "Go to Integrations"
+msgstr "前往整合"
+
+#. Accessible label for button navigating from builder to resumes dashboard
+#: src/routes/builder/$resumeId/-components/header.tsx
+msgid "Go to resumes dashboard"
+msgstr "前往履歷儀表板"
 
 #: src/components/command-palette/pages/navigation.tsx
 msgid "Go to..."
 msgstr "前往…"
+
+#. Authentication provider display name in account settings
+#. Brand name label for Google social sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Google"
+msgstr "Google"
+
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Google Gemini"
+msgstr "Google 雙子星"
 
 #: src/dialogs/resume/sections/education.tsx
 msgid "Grade"
@@ -1469,6 +1770,29 @@ msgstr "隱藏"
 msgid "Hide all icons on the resume"
 msgstr "隱藏履歷中的所有圖示"
 
+#. Accessible label for button that hides password in registration form
+#. Accessible label for button that hides password in reset-password form
+#. Accessible label for button that hides password on protected resume screen
+#. Accessible label for button that hides the password in login form
+#. Accessible label for toggle button that hides the visible current password
+#. Accessible label for toggle button that hides the visible new password
+#. Accessible label for toggle button that hides the visible password in two-factor disable dialog
+#. Accessible label for toggle button that hides the visible password in two-factor setup
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/routes/auth/login.tsx
+#: src/routes/auth/register.tsx
+#: src/routes/auth/reset-password.tsx
+#: src/routes/auth/resume-password.tsx
+msgid "Hide password"
+msgstr "隱藏密碼"
+
+#. Impact severity label in resume analysis suggestion card
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "High"
+msgstr "高"
+
 #: src/components/input/rich-input.tsx
 msgid "Highlight"
 msgstr "螢光標記"
@@ -1477,7 +1801,6 @@ msgstr "螢光標記"
 msgid "Hindi"
 msgstr "印地語"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 msgid "Home"
 msgstr "首頁"
@@ -1541,6 +1864,12 @@ msgstr "行內程式碼"
 msgid "Insert Table"
 msgstr "插入表格"
 
+#: src/components/command-palette/pages/navigation.tsx
+#: src/routes/dashboard/-components/sidebar.tsx
+#: src/routes/dashboard/settings/integrations/route.tsx
+msgid "Integrations"
+msgstr "整合"
+
 #: src/dialogs/resume/sections/custom.tsx
 #: src/utils/resume/section.tsx
 msgid "Interests"
@@ -1549,6 +1878,11 @@ msgstr "興趣"
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Intern"
 msgstr "實習生"
+
+#. Error shown when AI provider credentials or base URL are invalid in AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Invalid AI provider configuration. Please check your settings."
+msgstr "無效的 AI 提供者設定。請檢查您的設定。"
 
 #: src/routes/_home/-sections/faq.tsx
 msgid "Is Reactive Resume available in multiple languages?"
@@ -1576,21 +1910,52 @@ msgstr "日文"
 
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/job-search/index.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Job Search"
 msgstr "工作搜尋"
 
-#: src/routes/dashboard/-components/sidebar.tsx
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/components/command-palette/pages/navigation.tsx
 msgid "Job Search API"
 msgstr "工作搜尋 API"
 
-#: src/routes/dashboard/settings/job-search.tsx
-msgid "JSearch aggregates job listings from multiple job boards using Google for Jobs. You can filter by country (ISO alpha-2 code), date posted, job type, remote options, and experience level."
-msgstr "JSearch 使用 Google for Jobs 匯整來自多個求職網站的工作清單。您可以依據國家 (ISO alpha-2 代碼)、刊登日期、工作類型、遠端選項及經驗等級進行篩選。"
+#. Accessible label for free-text job search query field
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Job search query"
+msgstr "工作搜尋查詢"
 
-#: src/routes/dashboard/settings/job-search.tsx
-msgid "JSearch API Documentation"
-msgstr "JSearch API 文件"
+#. Example full name placeholder on profile settings form
+#. Example full name placeholder on registration form
+#: src/routes/auth/register.tsx
+#: src/routes/dashboard/settings/profile.tsx
+msgid "John Doe"
+msgstr "無名氏"
+
+#. Example username placeholder on profile settings form
+#. Example username placeholder on registration form
+#: src/routes/auth/register.tsx
+#: src/routes/dashboard/settings/profile.tsx
+msgid "john.doe"
+msgstr "john.doe"
+
+#. Example email placeholder for login identifier field
+#. Example email placeholder on forgot-password form
+#. Example email placeholder on profile settings form
+#. Example email placeholder on registration form
+#: src/routes/auth/forgot-password.tsx
+#: src/routes/auth/login.tsx
+#: src/routes/auth/register.tsx
+#: src/routes/dashboard/settings/profile.tsx
+msgid "john.doe@example.com"
+msgstr "john.doe@example.com"
+
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
+msgid "JSearch aggregates job listings from multiple job boards. You can filter by country, date posted, job type, remote options, and experience level."
+msgstr "JSearch 匯集了來自多個招聘網站的工作清單。您可以依國家/地區、刊登日期、工作類型、遠端選項及經驗等級進行篩選。"
+
+#. Import source option for standard JSON Resume format
+#: src/dialogs/resume/import.tsx
+msgid "JSON Resume"
+msgstr "JSON 簡歷"
 
 #: src/components/input/rich-input.tsx
 msgid "Justify Align"
@@ -1613,14 +1978,17 @@ msgstr "高棉語"
 msgid "Korean"
 msgstr "韓文"
 
+#. Short field label for custom display text associated with a URL
 #: src/components/input/url-input.tsx
 msgid "Label"
 msgstr "標籤"
 
+#. Preset button for setting picture aspect ratio to landscape orientation
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Landscape"
 msgstr "橫向"
 
+#. Menu item that opens language selection submenu
 #: src/components/command-palette/pages/preferences/language.tsx
 #: src/components/user/dropdown-menu.tsx
 #: src/dialogs/resume/sections/language.tsx
@@ -1670,6 +2038,7 @@ msgstr "版面配置"
 msgid "Learn More"
 msgstr "瞭解更多"
 
+#. Help link text to documentation about fitting resume content onto a page
 #: src/components/resume/preview.tsx
 msgid "Learn more about how to fit content on a page"
 msgstr "深入了解如何讓內容適應頁面"
@@ -1696,6 +2065,7 @@ msgstr "信件"
 msgid "Level"
 msgstr "等級"
 
+#. Accessible label for skill/proficiency level indicator, where level is current value out of 5
 #: src/components/level/display.tsx
 msgid "Level {level} of 5"
 msgstr "5 個等級中的第 {level} 級"
@@ -1704,6 +2074,7 @@ msgstr "5 個等級中的第 {level} 級"
 msgid "Licensed under <0>MIT</0>."
 msgstr "以 <0>MIT</0> 授權。"
 
+#. Appearance theme option for light mode
 #: src/components/user/dropdown-menu.tsx
 #: src/utils/theme.ts
 msgid "Light"
@@ -1714,9 +2085,15 @@ msgid "Light theme"
 msgstr "淺色主題"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Line Height"
 msgstr "行高"
+
+#. Authentication provider display name in account settings
+#. Brand name label for LinkedIn social sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "LinkedIn"
+msgstr "LinkedIn"
 
 #: src/routes/dashboard/settings/authentication/-components/hooks.tsx
 msgid "Linking your {providerName} account..."
@@ -1729,6 +2106,11 @@ msgstr "列表"
 #: src/utils/locale.ts
 msgid "Lithuanian"
 msgstr "立陶宛語"
+
+#. Accessible label for loading spinner icon
+#: src/components/ui/spinner.tsx
+msgid "Loading"
+msgstr "載入中"
 
 #: src/components/command-palette/pages/resumes.tsx
 msgid "Loading resumes..."
@@ -1745,12 +2127,15 @@ msgstr "載入中…"
 msgid "Location"
 msgstr "地點"
 
+#. Resume card context menu action to prevent edits
+#. Resume card dropdown action to prevent edits
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
 #: src/routes/dashboard/resumes/-components/menus/dropdown-menu.tsx
 msgid "Lock"
 msgstr "鎖定"
 
+#. User menu action to sign out of current account
 #: src/components/user/dropdown-menu.tsx
 msgid "Logout"
 msgstr "登出"
@@ -1759,10 +2144,17 @@ msgstr "登出"
 msgid "Long-term Sustainability"
 msgstr "長期永續發展"
 
+#. Link to backup-code verification flow when authenticator app is unavailable
 #: src/routes/auth/verify-2fa.tsx
 msgid "Lost access to your authenticator?"
 msgstr "無法使用驗證器了嗎？"
 
+#. Impact severity label in resume analysis suggestion card
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Low"
+msgstr "低"
+
+#. Layout editor column label for the primary content area
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Main"
 msgstr "主要"
@@ -1795,11 +2187,21 @@ msgstr "邊界（垂直）"
 msgid "Maximum Salary"
 msgstr "最高薪資"
 
+#. Impact severity label in resume analysis suggestion card
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Medium"
+msgstr "中型"
+
+#. File format label in import source selector
+#: src/dialogs/resume/import.tsx
+msgid "Microsoft Word"
+msgstr "Microsoft Word"
+
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Minimum Salary"
 msgstr "最低薪資"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Model"
 msgstr "模型"
 
@@ -1815,6 +2217,12 @@ msgstr "移動到"
 msgid "Multilingual"
 msgstr "多語系"
 
+#. Placeholder text for custom link URL field in resume builder
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom-fields.tsx
+msgid "Must start with https://"
+msgstr "必須從 https:// 開始"
+
+#. Label for full name input on registration form
 #: src/dialogs/api-key/create.tsx
 #: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/interest.tsx
@@ -1847,6 +2255,7 @@ msgstr "新行"
 msgid "New Page"
 msgstr "新頁面"
 
+#. Label for new password input on reset-password form
 #: src/dialogs/auth/change-password.tsx
 #: src/routes/auth/reset-password.tsx
 msgid "New Password"
@@ -1867,6 +2276,11 @@ msgstr "下一頁"
 #: src/routes/_home/-sections/features.tsx
 msgid "No Advertising, No Tracking"
 msgstr "無廣告、無追蹤"
+
+#. Error shown when AI import endpoint returns no parsed resume data
+#: src/dialogs/resume/import.tsx
+msgid "No data was returned from the AI provider."
+msgstr "AI 提供者未傳回資料。"
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "No degree required"
@@ -1904,6 +2318,11 @@ msgstr "注意事項"
 msgid "Odia"
 msgstr "歐利亞語"
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Ollama"
+msgstr "Ollama"
+
 #: src/routes/_home/-sections/features.tsx
 msgid "One-Click Sign-In"
 msgstr "一鍵登入"
@@ -1912,26 +2331,37 @@ msgstr "一鍵登入"
 msgid "Ongoing Maintenance"
 msgstr "持續維護"
 
+#. Resume card context menu action to open the resume editor
+#. Resume card dropdown action to open the resume editor
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
 #: src/routes/dashboard/resumes/-components/menus/dropdown-menu.tsx
 msgid "Open"
 msgstr "開啟"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Open AI Settings"
-msgstr "開啟 AI 設定"
-
+#. Button label to open the user's default email app
 #: src/routes/auth/forgot-password.tsx
 msgid "Open Email Client"
 msgstr "開啟電子郵件用戶端"
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Open Integrations Settings"
+msgstr "開啟整合設定"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Open Source"
 msgstr "開放原始碼"
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "OpenAI"
+msgstr "OpenAI"
+
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "OpenRouter"
+msgstr "OpenRouter"
+
 #: src/routes/_home/-sections/donate.tsx
-#: src/routes/_home/-sections/donate.tsx
-#: src/routes/_home/-sections/footer.tsx
 #: src/routes/_home/-sections/footer.tsx
 msgid "opens in new tab"
 msgstr "在新分頁中開啟"
@@ -1966,6 +2396,7 @@ msgstr "總分"
 msgid "Page"
 msgstr "頁"
 
+#. Layout editor page label with 1-based page number
 #. placeholder {0}: pageIndex + 1
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
@@ -1976,6 +2407,7 @@ msgstr "第 {0} 頁"
 msgid "Page {currentPage}"
 msgstr "頁面 {currentPage}"
 
+#. Page counter label shown above resume preview pages
 #: src/components/resume/preview.tsx
 msgid "Page {pageNumber} of {totalNumberOfPages}"
 msgstr "第 {pageNumber} / {totalNumberOfPages} 頁"
@@ -1987,6 +2419,13 @@ msgstr "段落"
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Part-time"
 msgstr "兼職"
+
+#. Authentication provider display name in account settings
+#. Label for passkey sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Passkey"
+msgstr "密碼"
 
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Passkey deleted successfully."
@@ -2004,11 +2443,16 @@ msgstr "密碼"
 msgid "Passkeys & 2FA"
 msgstr "通行金鑰與 2FA"
 
+#. Authentication provider display name in account settings
+#. Label for password input on login form
+#. Label for password input on protected resume access form
+#. Label for password input on registration form
 #: src/dialogs/auth/disable-two-factor.tsx
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/routes/auth/login.tsx
 #: src/routes/auth/register.tsx
 #: src/routes/auth/resume-password.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
 #: src/routes/dashboard/settings/authentication/-components/password.tsx
 msgid "Password"
 msgstr "密碼"
@@ -2029,8 +2473,12 @@ msgstr "已停用密碼保護。"
 msgid "Password protection has been enabled."
 msgstr "已啟用密碼保護。"
 
+#. File format label in import source selector
+#: src/dialogs/resume/import.tsx
+msgid "PDF"
+msgstr "PDF"
+
 #: src/dialogs/resume/sections/education.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/volunteer.tsx
@@ -2075,6 +2523,7 @@ msgstr "正在產生您的 PDF，請稍候…"
 msgid "Polish"
 msgstr "波蘭語"
 
+#. Preset button for setting picture aspect ratio to portrait orientation
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Portrait"
 msgstr "直向"
@@ -2088,12 +2537,10 @@ msgid "Portuguese (Portugal)"
 msgstr "葡萄牙語（葡萄牙）"
 
 #: src/dialogs/resume/sections/experience.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/reference.tsx
 msgid "Position"
 msgstr "職位"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/preferences/index.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
@@ -2101,9 +2548,18 @@ msgstr "職位"
 msgid "Preferences"
 msgstr "偏好設定"
 
+#: src/components/input/color-picker.tsx
+msgid "Presets"
+msgstr "預設值"
+
 #: src/components/input/chip-input.tsx
 msgid "Press <0>{RETURN_KEY}</0> or <1>{COMMA_KEY}</1> to add or save the current keyword."
 msgstr "請按下 <0>{RETURN_KEY}</0> 或 <1>{COMMA_KEY}</1> 來新增或儲存目前的關鍵字。"
+
+#. Command palette hint that pressing Enter opens the selected resume
+#: src/components/command-palette/pages/resumes.tsx
+msgid "Press <0>Enter</0> to open"
+msgstr "按<0>Enter</0>開啟"
 
 #: src/routes/dashboard/job-search/index.tsx
 msgid "Previous"
@@ -2117,7 +2573,6 @@ msgstr "主要顏色"
 msgid "Proficiency"
 msgstr "熟練度"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/profile.tsx
@@ -2146,7 +2601,7 @@ msgstr "使用密碼保護履歷，避免未經授權的存取"
 msgid "Protect your resume with a password, and let only people with the password view it."
 msgstr "使用密碼保護您的履歷，只有知道密碼的人才能檢視。"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Provider"
 msgstr "服務提供者"
 
@@ -2164,13 +2619,18 @@ msgstr "出版者"
 msgid "Quota: {0} remaining"
 msgstr "配額： {0} 剩餘"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "RapidAPI Key"
 msgstr "RapidAPI 鑰匙"
 
 #: src/routes/_home/-sections/header.tsx
 msgid "Reactive Resume - Go to homepage"
 msgstr "Reactive Resume - 前往首頁"
+
+#. Import source option for current Reactive Resume JSON format
+#: src/dialogs/resume/import.tsx
+msgid "Reactive Resume (JSON)"
+msgstr "反應式履歷 (JSON)"
 
 #: src/routes/_home/-sections/prefooter.tsx
 msgid "Reactive Resume continues to grow thanks to its vibrant community. This project owes its progress to numerous individuals who've dedicated their time and skills to make it better. We celebrate the coders who've enhanced its features on GitHub, the linguists whose translations on Crowdin have made it accessible to a broader audience, and the people who've donated to support its continued development."
@@ -2191,6 +2651,16 @@ msgstr "Reactive Resume 今日登上 Product Hunt，快前往給予支持！"
 #: src/routes/_home/-sections/faq.tsx
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume 是開放原始碼、重視隱私且完全免費的工具。與其他履歷建立工具不同，它不會顯示廣告、不追蹤您的資料，也不會把功能鎖在付費牆後面。"
+
+#. App version label in footer; includes semantic version variable
+#: src/components/ui/copyright.tsx
+msgid "Reactive Resume v{__APP_VERSION__}"
+msgstr "反應式簡歷 v{__APP_VERSION__}"
+
+#. Import source option for legacy Reactive Resume v4 JSON format
+#: src/dialogs/resume/import.tsx
+msgid "Reactive Resume v4 (JSON)"
+msgstr "反應式履歷 v4 (JSON)"
 
 #: src/dialogs/resume/sections/cover-letter.tsx
 msgid "Recipient"
@@ -2240,6 +2710,11 @@ msgstr "僅遠端"
 msgid "Remove"
 msgstr "移除"
 
+#. Screen reader label for button that removes a keyword chip. Variable is the current keyword text.
+#: src/components/input/chip-input.tsx
+msgid "Remove {chip}"
+msgstr "移除 {chip}"
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Remove Password"
 msgstr "移除密碼"
@@ -2276,11 +2751,13 @@ msgstr "重新傳送驗證電子郵件"
 msgid "Resending verification email..."
 msgstr "正在重新傳送驗證電子郵件…"
 
+#. Destructive confirmation button label when resetting a resume section
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Reset"
 msgstr "重置"
 
+#. Primary action button label on reset-password form
 #: src/routes/auth/reset-password.tsx
 msgid "Reset Password"
 msgstr "重設密碼"
@@ -2306,15 +2783,10 @@ msgid "Resume analysis complete."
 msgstr "履歷分析完成。"
 
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
-#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
-#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Resume tailored successfully"
 msgstr "成功量身訂做履歷表"
 
 #: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/resumes.tsx
-#: src/components/command-palette/pages/resumes.tsx
 #: src/components/command-palette/pages/resumes.tsx
 #: src/routes/_home/-sections/statistics.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
@@ -2350,10 +2822,12 @@ msgstr "執行您的第一次分析，以獲得計分卡、優勢和優先建議
 msgid "Russian"
 msgstr "俄文"
 
+#. Passkey rename prompt confirm action in authentication settings
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Save"
 msgstr "節省"
 
+#. Button label to save the selected number of detected skills to the original resume
 #. placeholder {0}: selectedSkills.size
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Save {0} Skills"
@@ -2392,15 +2866,20 @@ msgid "Scorecard"
 msgstr "計分卡"
 
 #: src/routes/dashboard/job-search/index.tsx
-#: src/routes/dashboard/job-search/index.tsx
 msgid "Search"
 msgstr "搜尋"
+
+#. Accessible label for command palette search input
+#: src/components/command-palette/index.tsx
+msgid "Search commands"
+msgstr "搜尋指令"
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Search countries"
 msgstr "搜尋國家"
 
-#: src/components/input/icon-picker.tsx
+#. Accessible label for icon picker search input
+#. Placeholder text in icon picker search input
 #: src/components/input/icon-picker.tsx
 msgid "Search for an icon"
 msgstr "搜尋圖示"
@@ -2409,6 +2888,8 @@ msgstr "搜尋圖示"
 msgid "Search for..."
 msgstr "搜尋履歷…"
 
+#. Placeholder in command palette input on nested pages
+#: src/components/command-palette/index.tsx
 #: src/components/ui/combobox.tsx
 msgid "Search..."
 msgstr "搜尋..."
@@ -2423,10 +2904,9 @@ msgstr "段落類型"
 
 #. placeholder {0}: job.job_title
 #. placeholder {1}: job.employer_name
-#. placeholder {2}: aiEnabled ? " and the AI will optimize it for this position." : "."
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
-msgid "Select a resume to tailor for \"{0}\" at {1}. A copy will be created{2}"
-msgstr "選擇一份履歷，為{0}\" 量身打造，網址為 {1}。將建立一份副本{2}"
+msgid "Select a resume to tailor for \"{0}\" at {1}. A copy will be created."
+msgstr "選擇一份履歷，為{0}\" 量身打造，網址為 {1}。將建立一份副本."
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Select country"
@@ -2440,6 +2920,7 @@ msgstr "選擇..."
 msgid "Self-Host with Docker"
 msgstr "使用 Docker 自行託管"
 
+#. Primary action button label on forgot-password form
 #: src/routes/auth/forgot-password.tsx
 msgid "Send Password Reset Email"
 msgstr "傳送重設密碼電子郵件"
@@ -2457,13 +2938,10 @@ msgid "Serbian"
 msgstr "塞爾維亞語"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 #: src/routes/dashboard/settings/authentication/-components/password.tsx
 msgid "Set Password"
 msgstr "設定密碼"
 
-#: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 msgid "Settings"
@@ -2507,18 +2985,48 @@ msgstr "顯示"
 msgid "Show link in title"
 msgstr "在標題中顯示連結"
 
+#. Accessible label for button that reveals password in registration form
+#. Accessible label for button that reveals password in reset-password form
+#. Accessible label for button that reveals password on protected resume screen
+#. Accessible label for button that reveals the password in login form
+#. Accessible label for toggle button that reveals the masked current password
+#. Accessible label for toggle button that reveals the masked new password
+#. Accessible label for toggle button that reveals the masked password in two-factor disable dialog
+#. Accessible label for toggle button that reveals the masked password in two-factor setup
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/routes/auth/login.tsx
+#: src/routes/auth/register.tsx
+#: src/routes/auth/reset-password.tsx
+#: src/routes/auth/resume-password.tsx
+msgid "Show password"
+msgstr "顯示密碼"
+
+#. Dialog title for the mobile navigation sidebar panel
+#. Layout editor column label for the secondary sidebar area
+#: src/components/ui/sidebar.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Sidebar"
-msgstr "側邊欄"
+msgstr "側邊欄<<<<<<< HEAD"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/index.tsx
 msgid "Sidebar Width"
 msgstr "側邊欄寬度"
 
+#. Primary action button label on login form
 #: src/routes/auth/login.tsx
 msgid "Sign in"
 msgstr "登入"
 
+#. Call-to-action link from forgot-password page to login page
+#. Call-to-action link from registration page to login page
+#: src/routes/auth/forgot-password.tsx
+#: src/routes/auth/register.tsx
+msgid "Sign in now"
+msgstr "立即登入"
+
+#. Title on the login page
 #: src/routes/auth/login.tsx
 msgid "Sign in to your account"
 msgstr "登入您的帳戶"
@@ -2527,12 +3035,11 @@ msgstr "登入您的帳戶"
 msgid "Sign in with GitHub, Google or a custom OAuth provider."
 msgstr "使用 GitHub、Google 或自訂 OAuth 服務登入。"
 
+#. Primary action button label on registration form
 #: src/routes/auth/register.tsx
 msgid "Sign up"
 msgstr "註冊"
 
-#: src/routes/auth/-components/social-auth.tsx
-#: src/routes/auth/-components/social-auth.tsx
 #: src/routes/auth/-components/social-auth.tsx
 #: src/routes/auth/login.tsx
 msgid "Signing in..."
@@ -2557,6 +3064,10 @@ msgstr "單欄版面，頂端極簡抬頭並保留大量留白；乾淨現代，
 #: src/dialogs/resume/template/data.ts
 msgid "Single-column with a sidebar and clean grid layout; versatile for any professional or technical role."
 msgstr "單欄版面，包含側邊欄與俐落的網格配置；適用於任何專業或技術職位。"
+
+#: src/dialogs/resume/template/data.ts
+msgid "Single-column with an inline three-column entry header (position · organization · period); compact and ATS-friendly, well-suited for Asian resume conventions (CN/JP/KR)."
+msgstr "單欄，內嵌三欄入口標題 (位置 - 組織 - 句點)；簡潔且適合 ATS，非常適合亞洲簡歷慣例 (CN/JP/KR)。"
 
 #: src/dialogs/resume/template/data.ts
 msgid "Single-column; polished and serious for senior or enterprise-level positions."
@@ -2585,19 +3096,31 @@ msgstr "斯洛伐克語"
 
 #: src/utils/locale.ts
 msgid "Slovenian"
-msgstr ""
+msgstr "斯洛維尼亞語"
 
 #: src/dialogs/resume/index.tsx
 msgid "Slug"
 msgstr "標示碼"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
+#. Fallback error description when resume analysis request fails
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Something went wrong while analyzing your resume."
+msgstr "在分析您的履歷時出了問題。"
+
+#. Fallback error description when syncing newly detected skills fails
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Something went wrong while syncing skills."
+msgstr "同步技能時出了問題。"
+
+#. Fallback error description when tailoring pipeline fails
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Something went wrong while tailoring your resume."
+msgstr "在為您量身打造簡歷時出了問題。"
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Something went wrong. Please try again."
 msgstr "發生錯誤。請再試一次。"
 
-#: src/routes/dashboard/resumes/index.tsx
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Sort by"
 msgstr "排序方式"
@@ -2627,6 +3150,7 @@ msgstr "贊助者"
 msgid "Sponsorships"
 msgstr "贊助"
 
+#. Preset button for setting picture aspect ratio to square
 #: src/components/level/combobox.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Square"
@@ -2674,7 +3198,10 @@ msgstr "Subreddit"
 msgid "Suggestions"
 msgstr "建議"
 
+#. Fallback title for a custom summary item in resume builder when content is empty
+#. Fallback title for a custom summary item in resume builder when content is unavailable
 #: src/dialogs/resume/sections/custom.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/utils/resume/section.tsx
 msgid "Summary"
 msgstr "摘要"
@@ -2744,8 +3271,8 @@ msgstr "範本圖庫"
 msgid "Templates"
 msgstr "範本"
 
-#: src/routes/dashboard/settings/ai.tsx
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Test Connection"
 msgstr "測試連線"
 
@@ -2753,6 +3280,7 @@ msgstr "測試連線"
 msgid "Testimonials"
 msgstr "用戶評價"
 
+#: src/components/input/rich-input.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
 msgid "Text Color"
 msgstr "字型色彩"
@@ -2765,6 +3293,20 @@ msgstr "泰文"
 msgid "The AI identified new skills from your experience that match this job. Select which ones to save back to your original resume for future applications. This will permanently modify your original resume and cannot be undone."
 msgstr "AI 從您的經驗中找出符合此工作的新技能。請選擇要儲存回原始履歷的技能，以便日後應徵時使用。這將永久修改您的原始履歷，且無法撤銷。"
 
+#. Error description when AI returns invalid resume analysis format
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "The AI returned an invalid analysis format. Please try again."
+msgstr "AI 返回無效的分析格式。請再試一次。"
+
+#. Error description when AI tailoring output is invalid
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "The AI returned invalid tailoring data. Please try again."
+msgstr "AI 傳回無效的剪裁資料。請再試一次。"
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "The AI will optimize it for this position."
+msgstr "AI 會針對此位置進行最佳化。"
+
 #: src/routes/dashboard/settings/api-keys.tsx
 msgid "The API key has been deleted successfully."
 msgstr "API Key 已成功刪除。"
@@ -2773,13 +3315,20 @@ msgstr "API Key 已成功刪除。"
 msgid "The API key will no longer be able to access your data after deletion. This action cannot be undone."
 msgstr "刪除後，此 API Key 將無法再存取您的資料。此動作無法復原。"
 
+#. Empty-state message when no command palette results match the search query
 #: src/components/command-palette/index.tsx
 msgid "The command you're looking for doesn't exist."
 msgstr "您要找的指令不存在。"
 
+#. Warning shown when resume content exceeds printable page height
 #: src/components/resume/preview.tsx
 msgid "The content is too tall for this page, this may cause undesirable results when exporting to PDF."
 msgstr "本頁內容過高，匯出為 PDF 時可能會出現不理想的效果。"
+
+#. Error shown when AI parsing returns invalid resume structure during import
+#: src/dialogs/resume/import.tsx
+msgid "The imported file could not be parsed into a valid resume."
+msgstr "匯入的檔案無法解析為有效的履歷。"
 
 #: src/routes/auth/resume-password.tsx
 msgid "The password you entered is incorrect"
@@ -2793,6 +3342,7 @@ msgstr "您嘗試存取的履歷已啟用密碼保護"
 msgid "The URL you entered is not valid."
 msgstr "您輸入的 URL 無效。"
 
+#. Menu item that opens appearance theme selection submenu
 #: src/components/command-palette/pages/preferences/theme.tsx
 #: src/components/user/dropdown-menu.tsx
 #: src/routes/dashboard/settings/preferences.tsx
@@ -2823,7 +3373,6 @@ msgstr "此動作無法復原。"
 msgid "This action cannot be undone. All your data will be permanently deleted."
 msgstr "此動作無法復原。您的所有資料都將被永久刪除。"
 
-#: src/dialogs/resume/import.tsx
 #: src/dialogs/resume/import.tsx
 msgid "This feature requires AI Integration to be enabled. Please enable it in the settings."
 msgstr "此功能需要啟用 AI 整合。請先在設定中啟用。"
@@ -2869,6 +3418,10 @@ msgstr "這會產生一組新的 API Key，讓機器可以透過 Reactive Resume
 msgid "This will help you identify it later, if you plan to have multiple passkeys."
 msgstr "如果您打算使用多個通行鑰，這將有助於您稍後辨識。"
 
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
+msgid "This will remove all items from this section."
+msgstr "這將移除此區中的所有項目。"
+
 #: src/routes/_home/-sections/hero.tsx
 msgid "Timelapse demonstration of building a resume with Reactive Resume"
 msgstr "使用 Reactive Resume 建立履歷的縮時示範影片"
@@ -2900,6 +3453,23 @@ msgstr "若要搜尋工作清單，您需要在設定中設定您的 RapidAPI �
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Today"
 msgstr "今天"
+
+#. Screen-reader label for opening or closing the left sidebar in resume builder
+#: src/routes/builder/$resumeId/-components/header.tsx
+msgid "Toggle left sidebar"
+msgstr "切換左側欄"
+
+#. Screen-reader label for opening or closing the right sidebar in resume builder
+#: src/routes/builder/$resumeId/-components/header.tsx
+msgid "Toggle right sidebar"
+msgstr "切換右側邊欄"
+
+#. Accessible label for draggable/clickable sidebar rail that toggles sidebar visibility
+#. Screen-reader-only label for button that opens or closes the app sidebar
+#. Tooltip text for sidebar rail toggle action
+#: src/components/ui/sidebar.tsx
+msgid "Toggle Sidebar"
+msgstr "切換側邊欄"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Track your resume's views and downloads"
@@ -2967,6 +3537,11 @@ msgstr "已成功停用雙因子驗證。"
 msgid "Two-factor authentication has been setup successfully."
 msgstr "已成功設定雙因子驗證。"
 
+#. Accessible title for QR code image shown during two-factor setup
+#: src/dialogs/auth/enable-two-factor.tsx
+msgid "Two-Factor Authentication QR Code"
+msgstr "雙因素驗證 QR 代碼"
+
 #: src/dialogs/resume/import.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
@@ -2977,6 +3552,8 @@ msgstr "類型"
 msgid "Type \"{CONFIRMATION_TEXT}\" to confirm"
 msgstr "輸入「{CONFIRMATION_TEXT}」以確認"
 
+#. Placeholder in command palette input on root page
+#. Screen-reader dialog description instructing users how to use the command palette
 #: src/components/command-palette/index.tsx
 msgid "Type a command or search..."
 msgstr "輸入指令或搜尋…"
@@ -3010,6 +3587,9 @@ msgstr "無限履歷"
 msgid "Unlinking your {providerName} account..."
 msgstr "正在取消連結您的 {providerName} 帳戶…"
 
+#. Primary action button label to unlock a password-protected resume
+#. Resume card context menu action to remove edit lock
+#. Resume card dropdown action to remove edit lock
 #: src/routes/auth/resume-password.tsx
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
@@ -3025,6 +3605,14 @@ msgstr "未命名密碼匙"
 msgid "Unverified"
 msgstr "未驗證"
 
+#. Salary label when only an upper salary bound is available
+#. placeholder {0}: formatCurrency(max)
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "Up to {0}{periodSuffix}"
+msgstr "高達 {0}{periodSuffix}"
+
+#. Resume card context menu action to edit resume metadata
+#. Resume card dropdown action to edit resume metadata
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
@@ -3093,6 +3681,7 @@ msgstr "更新現有摘要項目"
 msgid "Update an existing volunteer experience"
 msgstr "更新現有的志工經歷"
 
+#. Primary action button to submit changed password
 #: src/dialogs/auth/change-password.tsx
 #: src/routes/dashboard/settings/authentication/-components/password.tsx
 msgid "Update Password"
@@ -3115,13 +3704,24 @@ msgid "Updating your resume..."
 msgstr "正在更新您的履歷…"
 
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+msgid "Upload picture"
+msgstr "上傳圖片"
+
+#: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Uploading picture..."
 msgstr "正在上傳圖片…"
 
+#. Form field label for the generated public resume link in sharing settings
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "URL"
 msgstr "URL"
 
+#: src/components/input/color-picker.tsx
+msgid "Use color {color}"
+msgstr "使用顏色 {color}"
+
+#. Label for username input on registration form
 #: src/dialogs/resume/sections/profile.tsx
 #: src/routes/auth/register.tsx
 #: src/routes/dashboard/settings/profile.tsx
@@ -3140,10 +3740,17 @@ msgstr "烏茲別克語"
 msgid "Valid URLs must start with http:// or https://."
 msgstr "有效的 URL 必須以 http:// 或 https:// 開頭。"
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Vercel AI Gateway"
+msgstr "Vercel AI Gateway"
+
 #: src/routes/dashboard/settings/profile.tsx
 msgid "Verified"
 msgstr "已驗證"
 
+#. Primary action button to submit 2FA code
+#. Primary action button to submit backup code
 #: src/routes/auth/verify-2fa-backup.tsx
 #: src/routes/auth/verify-2fa.tsx
 msgid "Verify"
@@ -3200,7 +3807,7 @@ msgstr "個人網站"
 msgid "What do you want to rename this section to?"
 msgstr "您想將這個段落重新命名為什麼？"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "What is JSearch API?"
 msgstr "什麼是 JSearch API？"
 
@@ -3275,7 +3882,7 @@ msgstr "您的變更會自動儲存。"
 msgid "Your data is secure, and never shared or sold to anyone."
 msgstr "您的資料是安全的，絕不會與任何人分享或出售。"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Your data is stored locally"
 msgstr "您的資料將儲存在本機裝置中"
 
@@ -3299,11 +3906,10 @@ msgstr "您的密碼已成功更新。"
 msgid "Your profile has been updated successfully."
 msgstr "您的個人設定已成功更新。"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Your RapidAPI key is stored locally on your browser. It is only sent to the server when making a request to search for jobs, and is never stored or logged on our servers."
 msgstr "您的 RapidAPI 密鑰會儲存在您瀏覽器的本機中。它只會在要求搜尋工作時傳送至伺服器，絕不會儲存或記錄在我們的伺服器上。"
 
-#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/index.tsx
 msgid "Your resume has been created successfully."
 msgstr "您的履歷已成功建立。"

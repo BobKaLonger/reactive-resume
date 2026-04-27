@@ -8,7 +8,7 @@ msgstr ""
 "Language: sl\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-14 12:40\n"
+"PO-Revision-Date: 2026-04-27 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;\n"
@@ -53,35 +53,33 @@ msgstr "{0, plural, one {# vloga} two {# vlogi} few {# vloge} other {# vlog}}"
 msgid "{0} / {1} requests used"
 msgstr "{0} / {1} uporabljenih zahtevkov"
 
-#. placeholder {0}: Math.floor(diffDays / 30)
-#: src/routes/dashboard/job-search/-components/job-utils.ts
-msgid "{0} months ago"
-msgstr "{0} pred meseci"
-
-#. placeholder {0}: Math.floor(diffDays / 7)
-#: src/routes/dashboard/job-search/-components/job-utils.ts
-msgid "{0} weeks ago"
-msgstr "{0} pred tedni"
-
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "{column, plural, one {# Column} other {# Columns}}"
 msgstr "{column, plural, one {# stolpec} two {# stolpca} few {# stolpci} other {# stolpcev}}"
 
 #: src/routes/dashboard/job-search/-components/job-utils.ts
-msgid "{diffDays} days ago"
-msgstr "{diffDays} pred dnevi"
+msgid "{diffDays, plural, one {# day ago} other {# days ago}}"
+msgstr "{diffDays, plural, one {# dan nazaj} other {# dni nazaj}}"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "{months, plural, one {# month ago} other {# months ago}}"
+msgstr "{months, plural, one {# mesec nazaj} other {# mesecev nazaj}}"
+
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "{used} of {limit} requests used ({remaining} remaining)"
 msgstr "{used} uporabljenih zahtevkov {limit} ({remaining} preostalo)"
+
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "{weeks, plural, one {# week ago} other {# weeks ago}}"
+msgstr "{weeks, plural, one {# teden nazaj} other {# tednov nazaj}}"
 
 #: src/routes/_home/-sections/hero.tsx
 msgid "<0>Finally,</0><1>A free and open-source resume builder</1>"
 msgstr "<0>Končno,</0><1>Brezplačni in odprtokodni graditelj življenjepisov</1>"
 
 #: src/routes/_home/-sections/faq.tsx
-msgctxt "Every word needs to be wrapped in a tag"
+msgctxt "Home page FAQ section heading with each word visually separated into individual spans"
 msgid "<0>Frequently</0><1>Asked</1><2>Questions</2>"
 msgstr "<0>Pogosto</0><1>Zastavljena</1><2>Vprašanja</2>"
 
@@ -134,10 +132,10 @@ msgstr "Nova potrditvena povezava je bila poslana na vaš e-poštni naslov. Za p
 msgid "A passion project by <0>Amruth Pillai</0>."
 msgstr "Projekt iz strasti avtorja <0>Amruth Pillai</0>."
 
-#: src/dialogs/resume/index.tsx
-#: src/dialogs/resume/index.tsx
-msgid "A resume with this slug already exists."
-msgstr "Življenjepis s tem vzdevkom že obstaja."
+#. Error description when generated slug for duplicated tailored resume already exists
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "A resume with this slug already exists. Please try again."
+msgstr "Nadaljevanje s tem polžem že obstaja. Poskusite znova."
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "A4"
@@ -155,6 +153,11 @@ msgstr "Dostopajte do svojih življenjepisov in podatkov programsko prek API-ja.
 msgid "Add a custom field"
 msgstr "Dodaj polje po meri"
 
+#: src/components/input/chip-input.tsx
+msgid "Add a keyword..."
+msgstr "Dodajte ključno besedo..."
+
+#. Tooltip for action button that opens URL label editor
 #: src/components/input/url-input.tsx
 msgid "Add a label to the URL"
 msgstr "Dodajte oznako povezavi URL"
@@ -224,6 +227,10 @@ msgstr "Dodaj stolpec za"
 msgid "Add Column Before"
 msgstr "Dodaj stolpec pred"
 
+#: src/components/input/chip-input.tsx
+msgid "Add keyword"
+msgstr "Dodajte ključno besedo"
+
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Add multiple roles to show career progression at the same company."
 msgstr "Dodajte več vlog za prikaz napredovanja kariere v isti podjetji."
@@ -258,7 +265,6 @@ msgid "Afrikaans"
 msgstr "Afriščina"
 
 #: src/dialogs/resume/import.tsx
-#: src/dialogs/resume/import.tsx
 msgid "AI"
 msgstr "AI"
 
@@ -276,7 +282,7 @@ msgstr "Dovoli javni dostop"
 
 #: src/routes/auth/register.tsx
 msgid "Already have an account? <0/>"
-msgstr ""
+msgstr "Že imate račun? <0/>"
 
 #: src/utils/locale.ts
 msgid "Amharic"
@@ -287,6 +293,7 @@ msgstr "Amharščina"
 msgid "An error occurred while loading the page."
 msgstr "Pri nalaganju strani je prišlo do napake."
 
+#. Fallback toast when importing a resume fails for an unknown reason
 #: src/dialogs/resume/import.tsx
 msgid "An unknown error occurred while importing your resume."
 msgstr "Pri uvozu vašega življenjepisa je prišlo do neznane napake."
@@ -303,11 +310,15 @@ msgstr "Analiza..."
 msgid "And many more..."
 msgstr "In še veliko več..."
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Anthropic Claude"
+msgstr "Antropični Claude"
+
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Any level"
 msgstr "Katera koli stopnja"
 
-#: src/routes/dashboard/job-search/-components/search-filters.tsx
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Any time"
 msgstr "Kadar koli"
@@ -332,11 +343,10 @@ msgstr "Vsakdo s povezavo si lahko ogleda in prenese življenjepis."
 msgid "API Access"
 msgstr "API dostop"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "API Key"
 msgstr "API ključ"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/api-keys.tsx
@@ -344,10 +354,11 @@ msgid "API Keys"
 msgstr "API ključi"
 
 #: src/routes/dashboard/settings/api-keys.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "API Reference"
 msgstr "API dokumentacija"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "API Usage"
 msgstr "Uporaba API"
 
@@ -363,6 +374,11 @@ msgstr "Statistika aplikacije"
 msgid "Apply"
 msgstr "Uporabi"
 
+#: src/routes/dashboard/job-search/-components/job-detail.tsx
+msgid "Apply for this job"
+msgstr "Prijavite se za to delovno mesto"
+
+#. Fallback publisher name for a third-party job application link
 #: src/routes/dashboard/job-search/-components/job-detail.tsx
 msgid "Apply Link"
 msgstr "Uporabi povezavo"
@@ -382,6 +398,14 @@ msgstr "Ali ste prepričani, da želite zapreti to pogovorno okno?"
 #: src/routes/dashboard/settings/api-keys.tsx
 msgid "Are you sure you want to delete this API key?"
 msgstr "Ali ste prepričani, da želite izbrisati ta API ključ?"
+
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
+msgid "Are you sure you want to delete this custom section?"
+msgstr "Ali ste prepričani, da želite izbrisati ta razdelek po meri?"
+
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
+msgid "Are you sure you want to delete this item?"
+msgstr "Ste prepričani, da želite izbrisati ta element?"
 
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
@@ -403,14 +427,16 @@ msgstr "Ali ste prepričani, da želite zakleniti ta življenjepis?"
 msgid "Are you sure you want to remove password protection?"
 msgstr "Ali ste prepričani, da želite odstraniti zaščito z geslom?"
 
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
+msgid "Are you sure you want to reset this section?"
+msgstr "Ali ste prepričani, da želite ponastaviti ta razdelek?"
+
 #: src/dialogs/resume/sections/education.tsx
 msgid "Area of Study"
 msgstr "Področje študija"
 
 #: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
-#: src/routes/dashboard/-components/sidebar.tsx
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Artificial Intelligence"
 msgstr "Umetna inteligenca"
 
@@ -418,7 +444,6 @@ msgstr "Umetna inteligenca"
 msgid "Aspect Ratio"
 msgstr "Razmerje stranic"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/authentication/index.tsx
@@ -443,6 +468,7 @@ msgstr "Priznanja"
 msgid "Azerbaijani"
 msgstr "Azerbajdžanščina"
 
+#. Secondary navigation button on 2FA verification screen
 #: src/routes/auth/verify-2fa.tsx
 msgid "Back to Login"
 msgstr "Nazaj na prijavo"
@@ -455,7 +481,7 @@ msgstr "Barva ozadja"
 msgid "Backup codes copied to clipboard."
 msgstr "Varnostne kode kopirane v odložišče."
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Base URL (Optional)"
 msgstr "Osnovni URL (neobvezno)"
 
@@ -492,6 +518,7 @@ msgstr "Radij obrobe"
 msgid "Border Width"
 msgstr "Širina obrobe"
 
+#. Screen-reader dialog title for the command palette in the resume builder
 #: src/components/command-palette/index.tsx
 msgid "Builder Command Palette"
 msgstr "Paleta ukazov graditelja"
@@ -504,6 +531,7 @@ msgstr "Bolgarščina"
 msgid "Bullet List"
 msgstr "Označen seznam"
 
+#. Tagline shown in app footer/about area
 #: src/components/ui/copyright.tsx
 #: src/routes/_home/-sections/features.tsx
 #: src/routes/_home/-sections/prefooter.tsx
@@ -518,38 +546,33 @@ msgstr "Ali lahko prilagodim predloge?"
 msgid "Can I export my resume to PDF?"
 msgstr "Ali lahko izvozite svoj življenjepis v PDF?"
 
+#. API key deletion confirmation dialog cancel action in settings
+#. Account deletion confirmation dialog cancel action in danger zone
+#. Confirmation dialog button label to abort deleting a custom section in resume builder
+#. Confirmation dialog button label to abort deleting a section item in resume builder
+#. Confirmation dialog button label to abort resetting a resume section
+#. Profile settings form action to discard unsaved edits
+#. Secondary action button to close two-factor setup dialog
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/dialogs/resume/sections/award.tsx
-#: src/dialogs/resume/sections/award.tsx
-#: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/cover-letter.tsx
-#: src/dialogs/resume/sections/cover-letter.tsx
-#: src/dialogs/resume/sections/custom.tsx
 #: src/dialogs/resume/sections/custom.tsx
 #: src/dialogs/resume/sections/education.tsx
-#: src/dialogs/resume/sections/education.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/interest.tsx
-#: src/dialogs/resume/sections/interest.tsx
-#: src/dialogs/resume/sections/language.tsx
 #: src/dialogs/resume/sections/language.tsx
 #: src/dialogs/resume/sections/profile.tsx
-#: src/dialogs/resume/sections/profile.tsx
-#: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/publication.tsx
-#: src/dialogs/resume/sections/publication.tsx
-#: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/reference.tsx
 #: src/dialogs/resume/sections/skill.tsx
-#: src/dialogs/resume/sections/skill.tsx
 #: src/dialogs/resume/sections/summary-item.tsx
-#: src/dialogs/resume/sections/summary-item.tsx
-#: src/dialogs/resume/sections/volunteer.tsx
 #: src/dialogs/resume/sections/volunteer.tsx
 #: src/hooks/use-prompt.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 #: src/routes/dashboard/settings/api-keys.tsx
@@ -611,9 +634,19 @@ msgstr "Kitajščina (poenostavljena)"
 msgid "Chinese (Traditional)"
 msgstr "Kitajščina (tradicionalna)"
 
+#. Preset or custom shade refer to the color picker
+#: src/components/input/rich-input.tsx
+msgid "Choose a preset or custom shade."
+msgstr "Izberite prednastavljen odtenek ali odtenek po meri."
+
 #: src/components/level/combobox.tsx
 msgid "Circle"
 msgstr "Krog"
+
+#. Clear the text color
+#: src/components/input/rich-input.tsx
+msgid "Clear"
+msgstr "Jasno"
 
 #: src/routes/dashboard/job-search/index.tsx
 msgid "Clear all"
@@ -626,7 +659,7 @@ msgstr "Kliknite tukaj za izbiro datoteke za uvoz"
 #: src/components/ui/dialog.tsx
 #: src/components/ui/sheet.tsx
 msgid "Close"
-msgstr ""
+msgstr "Zapri"
 
 #: src/components/input/rich-input.tsx
 msgid "Code Block"
@@ -636,6 +669,17 @@ msgstr "Blok kode"
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "Columns"
 msgstr "Stolpci"
+
+#. Accessible label for command list region inside command palette
+#. Accessible label for the command palette dialog
+#: src/components/command-palette/index.tsx
+msgid "Command Palette"
+msgstr "Paleta ukazov"
+
+#. Accessible label for command palette dialog when browsing a nested command page
+#: src/components/command-palette/index.tsx
+msgid "Command Palette - {currentPage}"
+msgstr "Paleta ukazov - {currentPage}"
 
 #: src/routes/_home/-sections/footer.tsx
 msgid "Community"
@@ -653,6 +697,8 @@ msgstr "Popolnoma brezplačno, za vedno, brez skritih stroškov."
 msgid "Configure Job Search"
 msgstr "Konfiguracija iskanja zaposlitve"
 
+#. Account deletion confirmation dialog confirm action in danger zone
+#. Create API key dialog acknowledgment action after copying
 #: src/dialogs/api-key/create.tsx
 #: src/hooks/use-prompt.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
@@ -660,6 +706,7 @@ msgstr "Konfiguracija iskanja zaposlitve"
 msgid "Confirm"
 msgstr "Potrdi"
 
+#. Authentication settings action to link a social login provider
 #: src/routes/dashboard/settings/authentication/-components/social-provider.tsx
 msgid "Connect"
 msgstr "Poveži"
@@ -669,8 +716,9 @@ msgstr "Poveži"
 msgid "Content"
 msgstr "Vsebina"
 
-#: src/dialogs/auth/enable-two-factor.tsx
-#: src/dialogs/auth/enable-two-factor.tsx
+#. Button label to continue to dashboard after successful registration
+#. Final action button after saving backup codes
+#. Primary action button to proceed to next step in two-factor setup
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/routes/auth/register.tsx
 msgid "Continue"
@@ -693,6 +741,7 @@ msgstr "Izvajalec"
 msgid "Contributions fund bug fixes, security updates, and continuous improvements to keep the app running smoothly."
 msgstr "Prispevki financirajo popravke napak, varnostne posodobitve in stalne izboljšave za nemoteno delovanje aplikacije."
 
+#. Action button to copy two-factor backup codes to clipboard
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Copy"
 msgstr "Kopiraj"
@@ -713,19 +762,54 @@ msgstr "Kopirajte to skrivno kodo in jo uporabite v svojih aplikacijah za dostop
 msgid "Copy URL"
 msgstr "Kopiraj URL"
 
+#. Error description when syncing newly detected skills to source resume fails due to invalid patch
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Could not apply skill updates to your original resume."
+msgstr "V prvotnem življenjepisu ni bilo mogoče uporabiti posodobitev spretnosti."
+
+#. Fallback error description when duplicating a resume for tailoring fails
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Could not duplicate your resume."
+msgstr "Vašega življenjepisa ni bilo mogoče podvojiti."
+
 #: src/routes/dashboard/job-search/index.tsx
 msgid "Could not fetch jobs"
 msgstr "Ni bilo mogoče pridobiti delovnih mest"
+
+#. Error shown when job search API is unavailable while searching jobs
+#: src/routes/dashboard/job-search/-components/use-job-search.ts
+msgid "Could not fetch jobs from JSearch API. Please try again."
+msgstr "Ni bilo mogoče pridobiti delovnih mest iz vmesnika JSearch API. Poskusite znova."
+
+#. Error shown when JSearch API connection test fails in job search settings
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
+msgid "Could not reach JSearch API. Check your API key and try again."
+msgstr "Ni bilo mogoče doseči vmesnika JSearch API. Preverite svoj ključ API in poskusite znova."
+
+#. Error description when AI provider cannot be reached during resume analysis
+#. Error description when AI provider is unreachable during resume tailoring
+#. Error shown when AI provider is unreachable during PDF/DOCX resume import
+#. Error shown when the configured AI provider cannot be reached during connection test
+#: src/dialogs/resume/import.tsx
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Could not reach the AI provider. Please try again."
+msgstr "Ponudnika AI ni bilo mogoče doseči. Poskusite znova."
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Country"
 msgstr "Država"
 
+#. Fallback title for a custom cover letter item in resume builder when recipient is empty
+#. Fallback title for a custom cover letter item in resume builder when recipient is unavailable
 #: src/dialogs/resume/sections/custom.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/utils/resume/section.tsx
 msgid "Cover Letter"
 msgstr "Spremno pismo"
 
+#. Create API key dialog submit action
 #: src/dialogs/api-key/create.tsx
 #: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/award.tsx
@@ -830,11 +914,20 @@ msgstr "Ustvari vzorčni življenjepis"
 msgid "Create as many resumes as you want, without limits."
 msgstr "Ustvarite toliko življenjepisov, kolikor želite, brez omejitev."
 
+#. Call-to-action link from login page to account registration page
+#: src/routes/auth/login.tsx
+msgid "Create one now"
+msgstr "Ustvarite ga zdaj"
+
+#. Accessible label for create-resume split button group
+#: src/dialogs/resume/index.tsx
+msgid "Create resume with options"
+msgstr "Ustvarite življenjepis z možnostmi"
+
 #: src/dialogs/api-key/create.tsx
 msgid "Creating your API key..."
 msgstr "Ustvarjanje vašega API ključa..."
 
-#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/index.tsx
 msgid "Creating your resume..."
 msgstr "Ustvarjanje vašega življenjepisa..."
@@ -843,10 +936,19 @@ msgstr "Ustvarjanje vašega življenjepisa..."
 msgid "Current Password"
 msgstr "Trenutno geslo"
 
+#: src/components/input/color-picker.tsx
+msgid "Custom"
+msgstr "Po meri"
+
 #: src/routes/_home/-sections/features.tsx
 #: src/utils/resume/section.tsx
 msgid "Custom CSS"
 msgstr "Poljubni CSS"
+
+#. Authentication provider display name in account settings
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Custom OAuth"
+msgstr "OAuth po meri"
 
 #: src/utils/resume/section.tsx
 msgid "Custom Sections"
@@ -857,7 +959,6 @@ msgid "Czech"
 msgstr "Češčina"
 
 #: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/danger-zone.tsx
 msgid "Danger Zone"
@@ -867,6 +968,7 @@ msgstr "Nevarna cona"
 msgid "Danish"
 msgstr "Danščina"
 
+#. Appearance theme option for dark mode
 #: src/components/user/dropdown-menu.tsx
 #: src/utils/theme.ts
 msgid "Dark"
@@ -894,6 +996,12 @@ msgstr "Datum objave"
 msgid "Degree"
 msgstr "Stopnja"
 
+#. API key deletion confirmation dialog confirm action in settings
+#. Destructive confirmation button label when deleting a custom section in resume builder
+#. Destructive confirmation button label when deleting a section item in resume builder
+#. Passkey row action to remove the selected passkey
+#. Resume card context menu destructive action to remove a resume
+#. Resume card dropdown destructive action to remove a resume
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
@@ -915,6 +1023,10 @@ msgstr "Izbriši stolpec"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Delete Page"
 msgstr "Izbriši stran"
+
+#: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+msgid "Delete picture"
+msgstr "Izbriši sliko"
 
 #: src/components/input/rich-input.tsx
 msgid "Delete Row"
@@ -942,7 +1054,6 @@ msgstr "Brišem vaš življenjepis..."
 #: src/dialogs/resume/sections/certification.tsx
 #: src/dialogs/resume/sections/education.tsx
 #: src/dialogs/resume/sections/experience.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/publication.tsx
 #: src/dialogs/resume/sections/reference.tsx
@@ -967,6 +1078,7 @@ msgstr "Neposredna uporaba"
 msgid "Direct apply only"
 msgstr "Samo neposredna uporaba"
 
+#. Destructive action button to turn off two-factor authentication
 #: src/dialogs/auth/disable-two-factor.tsx
 #: src/routes/dashboard/settings/authentication/-components/two-factor.tsx
 msgid "Disable 2FA"
@@ -976,7 +1088,7 @@ msgstr "Onemogoči 2FA"
 msgid "Disable Two-Factor Authentication"
 msgstr "Onemogoči dvostopenjsko preverjanje pristnosti"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Disabled"
 msgstr "Onemogočeno"
 
@@ -984,6 +1096,7 @@ msgstr "Onemogočeno"
 msgid "Disabling two-factor authentication..."
 msgstr "Onemogočanje dvostopenjskega preverjanja pristnosti..."
 
+#. Authentication settings action to unlink a connected social login provider
 #: src/routes/dashboard/settings/authentication/-components/social-provider.tsx
 msgid "Disconnect"
 msgstr "Prekini povezavo"
@@ -992,6 +1105,11 @@ msgstr "Prekini povezavo"
 msgid "Discord"
 msgstr "Discord"
 
+#. Dialog description for the mobile sidebar panel
+#: src/components/ui/sidebar.tsx
+msgid "Displays the mobile sidebar."
+msgstr "Prikaže mobilno stransko vrstico."
+
 #: src/routes/_home/-sections/footer.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
 msgid "Documentation"
@@ -999,14 +1117,14 @@ msgstr "Dokumentacija"
 
 #: src/routes/auth/login.tsx
 msgid "Don't have an account? <0/>"
-msgstr ""
+msgstr "Nimate računa? <0/>"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
 msgid "Donate to Reactive Resume"
 msgstr "Donirajte za Reactive Resume"
 
+#. Action button to download two-factor backup codes as a text file
 #: src/dialogs/auth/enable-two-factor.tsx
-#: src/routes/$username/$slug.tsx
 msgid "Download"
 msgstr "Prenesi"
 
@@ -1034,10 +1152,6 @@ msgstr "Prenesi JSON"
 msgid "Download PDF"
 msgstr "Prenesi PDF"
 
-#: src/routes/$username/$slug.tsx
-msgid "Downloading..."
-msgstr "Prenašanje..."
-
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Downloads"
 msgstr "Prenosi"
@@ -1046,6 +1160,8 @@ msgstr "Prenosi"
 msgid "Drag and drop sections here to move them between columns"
 msgstr "Povlecite in spustite razdelke tukaj, da jih premaknete med stolpci"
 
+#. Resume card context menu action to create a copy
+#. Resume card dropdown action to create a copy
 #: src/dialogs/resume/index.tsx
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
@@ -1079,9 +1195,33 @@ msgstr "npr. 150000"
 msgid "e.g. 50000"
 msgstr "npr. 50000"
 
+#. Example placeholder text in job search input field
 #: src/routes/dashboard/job-search/index.tsx
 msgid "e.g. frontend developer jobs in Berlin"
 msgstr "npr. delovna mesta frontend razvijalca v Berlinu"
+
+#. Example model-name placeholder in AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "e.g., gpt-4, claude-3-opus, gemini-pro"
+msgstr "npr. gpt-4, claude-3-opus, gemini-pro"
+
+#. Screen reader label for button that edits a keyword chip. Variable is the current keyword text.
+#: src/components/input/chip-input.tsx
+msgid "Edit {chip}"
+msgstr "Uredi {chip}"
+
+#. Screen reader description for the fullscreen rich-text editor dialog
+#: src/components/input/rich-input.tsx
+msgid "Edit content in fullscreen mode"
+msgstr "Urejanje vsebine v celozaslonskem načinu"
+
+#: src/components/input/chip-input.tsx
+msgid "Edit keyword"
+msgstr "Uredi ključno besedo"
+
+#: src/components/input/chip-input.tsx
+msgid "Editing keyword..."
+msgstr "Urejanje ključne besede..."
 
 #: src/dialogs/resume/sections/custom.tsx
 #: src/utils/resume/section.tsx
@@ -1092,6 +1232,9 @@ msgstr "Izobrazba"
 msgid "Email"
 msgstr "E-pošta"
 
+#. Label for email input on forgot-password form
+#. Label for email input on registration form
+#. Label for login identifier input that accepts email or username
 #: src/routes/auth/forgot-password.tsx
 #: src/routes/auth/login.tsx
 #: src/routes/auth/register.tsx
@@ -1108,7 +1251,7 @@ msgstr "Omogoči"
 msgid "Enable 2FA"
 msgstr "Omogoči 2FA"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Enable AI Features"
 msgstr "Omogoči funkcije umetne inteligence"
 
@@ -1116,7 +1259,7 @@ msgstr "Omogoči funkcije umetne inteligence"
 msgid "Enable Two-Factor Authentication"
 msgstr "Omogoči dvostopenjsko preverjanje pristnosti"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Enabled"
 msgstr "Omogočeno"
 
@@ -1134,7 +1277,7 @@ msgstr "Angleščina"
 
 #: src/utils/locale.ts
 msgid "English (United Kingdom)"
-msgstr ""
+msgstr "Angleščina (Združeno kraljestvo)"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Enhance the security of your account with additional layers of protection."
@@ -1168,7 +1311,7 @@ msgstr "Vnesite svoje geslo, da potrdite nastavitev dvostopenjskega preverjanja 
 msgid "Enter your password to disable two-factor authentication. Your account will be less secure without 2FA enabled."
 msgstr "Vnesite svoje geslo za onemogočanje dvostopenjskega preverjanja pristnosti. Vaš račun bo brez omogočenega 2FA manj varen."
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Enter your RapidAPI key"
 msgstr "Vnesite svoj ključ RapidAPI"
 
@@ -1176,7 +1319,7 @@ msgstr "Vnesite svoj ključ RapidAPI"
 msgid "Every contribution, big or small, makes a huge difference to the project.<0/>Thank you for your support!"
 msgstr "Vsak prispevek, velik ali majhen, veliko pomeni projektu.<0/>Hvala za vašo podporo!"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Everything entered here is stored locally on your browser. Your data is only sent to the server when making a request to the AI provider, and is never stored or logged on our servers."
 msgstr "Vse, kar vnesete tukaj, je shranjeno lokalno v vašem brskalniku. Vaši podatki se na strežnik pošljejo samo ob zahtevi AI ponudniku in se nikoli ne shranijo ali beležijo na naših strežnikih."
 
@@ -1231,35 +1374,158 @@ msgstr "Izvozi"
 msgid "Failed to analyze resume."
 msgstr "Ni uspelo analizirati življenjepisa."
 
+#. Fallback toast when creating an API key fails
+#: src/dialogs/api-key/create.tsx
+msgid "Failed to create API key. Please try again."
+msgstr "Ni uspelo ustvariti ključa API. Poskusite znova."
+
+#. Fallback toast when account registration fails without a server error message
+#: src/routes/auth/register.tsx
+msgid "Failed to create your account. Please try again."
+msgstr "Ni vam uspelo ustvariti računa. Poskusite znova."
+
+#. Fallback toast when deleting a passkey fails
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Failed to delete passkey. Please try again."
 msgstr "Ni uspelo izbrisati gesla. Poskusite znova."
+
+#. Fallback toast when deleting an API key fails
+#: src/routes/dashboard/settings/api-keys.tsx
+msgid "Failed to delete the API key. Please try again."
+msgstr "Ni uspelo izbrisati ključa API. Poskusite znova."
+
+#. Fallback toast when account deletion fails
+#: src/routes/dashboard/settings/danger-zone.tsx
+msgid "Failed to delete your account. Please try again."
+msgstr "Ni uspelo izbrisati vašega računa. Poskusite znova."
+
+#. Fallback toast when disabling two-factor authentication fails
+#: src/dialogs/auth/disable-two-factor.tsx
+msgid "Failed to disable two-factor authentication. Please try again."
+msgstr "Ni uspelo onemogočiti dvostopenjskega preverjanja pristnosti. Poskusite znova."
 
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Failed to duplicate resume"
 msgstr "Ni uspelo podvojiti življenjepisa"
 
+#. Fallback toast when enabling two-factor authentication fails
+#: src/dialogs/auth/enable-two-factor.tsx
+msgid "Failed to enable two-factor authentication. Please try again."
+msgstr "Ni uspelo omogočiti dvostopenjskega preverjanja pristnosti. Poskusite znova."
+
+#. Fallback toast when linking a social authentication provider fails
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Failed to link provider. Please try again."
+msgstr "Ni uspelo povezati ponudnika. Poskusite znova."
+
+#. Fallback toast when passkey registration fails
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Failed to register passkey. Please try again."
 msgstr "Ni uspelo registrirati ključa passkey. Poskusite znova."
+
+#. Fallback toast when renaming a passkey fails
+#: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
+msgid "Failed to rename passkey. Please try again."
+msgstr "Ni uspelo preimenovati ključa passkey. Poskusite znova."
+
+#. Fallback toast when requesting email change confirmation fails
+#: src/routes/dashboard/settings/profile.tsx
+msgid "Failed to request email change. Please try again."
+msgstr "Ni uspelo zahtevati spremembe e-pošte. Poskusite znova."
+
+#. Fallback toast when resending account verification email fails
+#: src/routes/dashboard/settings/profile.tsx
+msgid "Failed to resend verification email. Please try again."
+msgstr "Ni uspelo ponovno poslati e-poštnega sporočila za preverjanje. Poskusite znova."
+
+#. Fallback toast when resetting password fails and no backend message is available
+#: src/routes/auth/reset-password.tsx
+msgid "Failed to reset your password. Please try again."
+msgstr "Ni uspelo ponastaviti gesla. Poskusite znova."
+
+#. Fallback error shown when job search request fails
+#: src/routes/dashboard/job-search/-components/use-job-search.ts
+msgid "Failed to search jobs. Please try again."
+msgstr "Neuspešno iskanje delovnih mest. Poskusite znova."
+
+#. Fallback toast when requesting password reset email fails without backend message
+#: src/routes/auth/forgot-password.tsx
+msgid "Failed to send password reset email. Please try again."
+msgstr "Ni uspelo poslati e-poštnega sporočila za ponastavitev gesla. Poskusite znova."
 
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Failed to setup two-factor authentication."
 msgstr "Ni bilo mogoče nastaviti dvostopenjskega preverjanja pristnosti."
 
+#. Fallback toast when custom OAuth sign-in fails without a provider error message
+#. Fallback toast when passkey sign-in fails without an error message
+#. Fallback toast when sign-in fails and no server error message is available
+#. Fallback toast when social sign-in fails without a provider error message
+#: src/routes/auth/-components/social-auth.tsx
 #: src/routes/auth/login.tsx
 msgid "Failed to sign in. Please try again."
 msgstr "Prijava ni uspela. Prosimo, poskusite znova."
+
+#. Fallback toast when signing out fails
+#: src/components/user/dropdown-menu.tsx
+msgid "Failed to sign out. Please try again."
+msgstr "Ni se uspelo odjaviti. Poskusite znova."
 
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Failed to sync skills"
 msgstr "Ni uspelo sinhronizirati veščin"
 
+#. Fallback toast when testing AI provider connection fails
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Failed to test AI provider connection. Please try again."
+msgstr "Ni uspelo preizkusiti povezave s ponudnikom AI. Poskusite znova."
+
+#. Fallback toast when testing RapidAPI job search connection fails
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
+msgid "Failed to test RapidAPI connection. Please try again."
+msgstr "Ni uspelo preizkusiti povezave RapidAPI. Poskusite znova."
+
+#. Fallback toast when unlinking a social authentication provider fails
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Failed to unlink provider. Please try again."
+msgstr "Ni uspelo odvezati ponudnika. Poskusite znova."
+
+#. Fallback toast when changing account password fails
+#: src/dialogs/auth/change-password.tsx
+msgid "Failed to update your password. Please try again."
+msgstr "Ni uspelo posodobiti gesla. Poskusite znova."
+
+#. Fallback toast when updating profile details fails
+#: src/routes/dashboard/settings/profile.tsx
+msgid "Failed to update your profile. Please try again."
+msgstr "Ni vam uspelo posodobiti profila. Poskusite znova."
+
+#. Fallback toast when uploading profile picture for resume fails
+#: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+msgid "Failed to upload picture. Please try again."
+msgstr "Ni uspelo naložiti slike. Poskusite znova."
+
+#. Fallback toast when resume password verification fails unexpectedly
+#: src/routes/auth/resume-password.tsx
+msgid "Failed to verify the password. Please try again."
+msgstr "Ni uspelo preveriti gesla. Poskusite znova."
+
+#. Fallback toast when verifying a backup two-factor authentication code fails
+#: src/routes/auth/verify-2fa-backup.tsx
+msgid "Failed to verify your backup code. Please try again."
+msgstr "Varnostne kode ni uspelo preveriti. Poskusite znova."
+
+#. Fallback toast when verifying a two-factor authentication code fails
+#. Fallback toast when verifying two-factor setup code fails
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/routes/auth/verify-2fa.tsx
+msgid "Failed to verify your code. Please try again."
+msgstr "Ni uspelo preveriti vaše kode. Poskusite znova."
+
 #: src/routes/_home/-sections/features.tsx
 msgid "Features"
 msgstr "Funkcionalnosti"
 
-#: src/routes/dashboard/resumes/index.tsx
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Filter by"
 msgstr "Filtriraj po"
@@ -1277,11 +1543,9 @@ msgid "Fluency"
 msgstr "Stopnja znanja"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Font Family"
 msgstr "Družina pisav"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Font Size"
 msgstr "Velikost pisave"
@@ -1306,6 +1570,7 @@ msgstr "Na primer, tu lahko zapišete informacije o tem, katerim podjetjem ste p
 msgid "For security reasons, this key will only be displayed once."
 msgstr "Iz varnostnih razlogov bo ta ključ prikazan samo enkrat."
 
+#. Link label to password reset page from login form
 #: src/routes/auth/login.tsx
 msgid "Forgot Password?"
 msgstr "Ste pozabili geslo?"
@@ -1331,6 +1596,7 @@ msgstr "Prosta oblika"
 msgid "French"
 msgstr "Francoščina"
 
+#. Layout editor toggle label that makes a page single-column
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Full Width"
 msgstr "Polna širina"
@@ -1343,9 +1609,19 @@ msgstr "Polni delovni čas"
 msgid "Fullscreen"
 msgstr "Celozaslonski način"
 
+#. Screen reader title for the fullscreen rich-text editor dialog
+#: src/components/input/rich-input.tsx
+msgid "Fullscreen Editor"
+msgstr "Urejevalnik za celozaslonsko prikazovanje"
+
 #: src/dialogs/resume/index.tsx
 msgid "Generate a random name"
 msgstr "Ustvari naključno ime"
+
+#. Error description when generated patch operations cannot be applied to tailored resume
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Generated resume changes were invalid. Please try again."
+msgstr "Generirane spremembe življenjepisa so bile neveljavne. Poskusite znova."
 
 #: src/utils/locale.ts
 msgid "German"
@@ -1363,10 +1639,18 @@ msgstr "Prejmite poglobljen pregled svojega življenjepisa, ki ga poganja umetna
 msgid "Get Started"
 msgstr "Začni"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Get your API key from RapidAPI by subscribing to the JSearch API."
 msgstr "Svoj ključ API dobite od RapidAPI tako, da se naročite na API JSearch."
 
+#. Authentication provider display name in account settings
+#. Brand name label for GitHub social sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "GitHub"
+msgstr "GitHub"
+
+#. Secondary navigation button on backup-code verification screen
 #: src/components/layout/not-found-screen.tsx
 #: src/routes/auth/verify-2fa-backup.tsx
 msgid "Go Back"
@@ -1377,12 +1661,29 @@ msgid "Go to dashboard"
 msgstr "Pojdi na nadzorno ploščo"
 
 #: src/routes/dashboard/job-search/index.tsx
-msgid "Go to Settings"
-msgstr "Pojdite v Nastavitve"
+msgid "Go to Integrations"
+msgstr "Pojdite na Integracije"
+
+#. Accessible label for button navigating from builder to resumes dashboard
+#: src/routes/builder/$resumeId/-components/header.tsx
+msgid "Go to resumes dashboard"
+msgstr "Pojdite na nadzorno ploščo z življenjepisi"
 
 #: src/components/command-palette/pages/navigation.tsx
 msgid "Go to..."
 msgstr "Pojdi na..."
+
+#. Authentication provider display name in account settings
+#. Brand name label for Google social sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Google"
+msgstr "Google"
+
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Google Gemini"
+msgstr "Google Gemini"
 
 #: src/dialogs/resume/sections/education.tsx
 msgid "Grade"
@@ -1469,6 +1770,29 @@ msgstr "Skrij"
 msgid "Hide all icons on the resume"
 msgstr "Skrij vse ikone na življenjepisu"
 
+#. Accessible label for button that hides password in registration form
+#. Accessible label for button that hides password in reset-password form
+#. Accessible label for button that hides password on protected resume screen
+#. Accessible label for button that hides the password in login form
+#. Accessible label for toggle button that hides the visible current password
+#. Accessible label for toggle button that hides the visible new password
+#. Accessible label for toggle button that hides the visible password in two-factor disable dialog
+#. Accessible label for toggle button that hides the visible password in two-factor setup
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/routes/auth/login.tsx
+#: src/routes/auth/register.tsx
+#: src/routes/auth/reset-password.tsx
+#: src/routes/auth/resume-password.tsx
+msgid "Hide password"
+msgstr "Skrijte geslo"
+
+#. Impact severity label in resume analysis suggestion card
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "High"
+msgstr "Visoka"
+
 #: src/components/input/rich-input.tsx
 msgid "Highlight"
 msgstr "Označi"
@@ -1477,7 +1801,6 @@ msgstr "Označi"
 msgid "Hindi"
 msgstr "Hindujščina"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 msgid "Home"
 msgstr "Domov"
@@ -1541,6 +1864,12 @@ msgstr "Inline koda"
 msgid "Insert Table"
 msgstr "Vstavi tabelo"
 
+#: src/components/command-palette/pages/navigation.tsx
+#: src/routes/dashboard/-components/sidebar.tsx
+#: src/routes/dashboard/settings/integrations/route.tsx
+msgid "Integrations"
+msgstr "Integracije"
+
 #: src/dialogs/resume/sections/custom.tsx
 #: src/utils/resume/section.tsx
 msgid "Interests"
@@ -1549,6 +1878,11 @@ msgstr "Interesi"
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Intern"
 msgstr "Pripravnik"
+
+#. Error shown when AI provider credentials or base URL are invalid in AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Invalid AI provider configuration. Please check your settings."
+msgstr "Nepravilna konfiguracija ponudnika AI. Preverite svoje nastavitve."
 
 #: src/routes/_home/-sections/faq.tsx
 msgid "Is Reactive Resume available in multiple languages?"
@@ -1576,21 +1910,52 @@ msgstr "Japonščina"
 
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/job-search/index.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Job Search"
 msgstr "Iskanje zaposlitve"
 
-#: src/routes/dashboard/-components/sidebar.tsx
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/components/command-palette/pages/navigation.tsx
 msgid "Job Search API"
 msgstr "API za iskanje delovnih mest"
 
-#: src/routes/dashboard/settings/job-search.tsx
-msgid "JSearch aggregates job listings from multiple job boards using Google for Jobs. You can filter by country (ISO alpha-2 code), date posted, job type, remote options, and experience level."
-msgstr "JSearch združuje oglase za delovna mesta iz več oglasnih desk z uporabo storitve Google za delovna mesta. Filtrirate lahko po državi (koda ISO alfa-2), datumu objave, vrsti delovnega mesta, možnostih oddaljenega dela in ravni izkušenj."
+#. Accessible label for free-text job search query field
+#: src/routes/dashboard/job-search/index.tsx
+msgid "Job search query"
+msgstr "Poizvedba za iskanje zaposlitve"
 
-#: src/routes/dashboard/settings/job-search.tsx
-msgid "JSearch API Documentation"
-msgstr "Dokumentacija API JSearch"
+#. Example full name placeholder on profile settings form
+#. Example full name placeholder on registration form
+#: src/routes/auth/register.tsx
+#: src/routes/dashboard/settings/profile.tsx
+msgid "John Doe"
+msgstr "John Doe"
+
+#. Example username placeholder on profile settings form
+#. Example username placeholder on registration form
+#: src/routes/auth/register.tsx
+#: src/routes/dashboard/settings/profile.tsx
+msgid "john.doe"
+msgstr "john.doe"
+
+#. Example email placeholder for login identifier field
+#. Example email placeholder on forgot-password form
+#. Example email placeholder on profile settings form
+#. Example email placeholder on registration form
+#: src/routes/auth/forgot-password.tsx
+#: src/routes/auth/login.tsx
+#: src/routes/auth/register.tsx
+#: src/routes/dashboard/settings/profile.tsx
+msgid "john.doe@example.com"
+msgstr "john.doe@example.com"
+
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
+msgid "JSearch aggregates job listings from multiple job boards. You can filter by country, date posted, job type, remote options, and experience level."
+msgstr "JSearch združuje oglase za delovna mesta iz več oglasnih desk. Filtrirate lahko glede na državo, datum objave, vrsto delovnega mesta, možnosti oddaljenega dela in raven izkušenj."
+
+#. Import source option for standard JSON Resume format
+#: src/dialogs/resume/import.tsx
+msgid "JSON Resume"
+msgstr "JSON Resume"
 
 #: src/components/input/rich-input.tsx
 msgid "Justify Align"
@@ -1613,14 +1978,17 @@ msgstr "Kmerščina"
 msgid "Korean"
 msgstr "Korejščina"
 
+#. Short field label for custom display text associated with a URL
 #: src/components/input/url-input.tsx
 msgid "Label"
 msgstr "Oznaka"
 
+#. Preset button for setting picture aspect ratio to landscape orientation
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Landscape"
 msgstr "Ležeče (Landscape)"
 
+#. Menu item that opens language selection submenu
 #: src/components/command-palette/pages/preferences/language.tsx
 #: src/components/user/dropdown-menu.tsx
 #: src/dialogs/resume/sections/language.tsx
@@ -1670,6 +2038,7 @@ msgstr "Postavitev"
 msgid "Learn More"
 msgstr "Več o tem"
 
+#. Help link text to documentation about fitting resume content onto a page
 #: src/components/resume/preview.tsx
 msgid "Learn more about how to fit content on a page"
 msgstr "Preberite več o tem, kako prilagoditi vsebino na stran"
@@ -1696,6 +2065,7 @@ msgstr "Letter"
 msgid "Level"
 msgstr "Raven"
 
+#. Accessible label for skill/proficiency level indicator, where level is current value out of 5
 #: src/components/level/display.tsx
 msgid "Level {level} of 5"
 msgstr "Raven {level} od 5"
@@ -1704,6 +2074,7 @@ msgstr "Raven {level} od 5"
 msgid "Licensed under <0>MIT</0>."
 msgstr "Licencirano pod <0>MIT</0>."
 
+#. Appearance theme option for light mode
 #: src/components/user/dropdown-menu.tsx
 #: src/utils/theme.ts
 msgid "Light"
@@ -1714,9 +2085,15 @@ msgid "Light theme"
 msgstr "Svetla tema"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgid "Line Height"
 msgstr "Višina vrstice"
+
+#. Authentication provider display name in account settings
+#. Brand name label for LinkedIn social sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "LinkedIn"
+msgstr "LinkedIn"
 
 #: src/routes/dashboard/settings/authentication/-components/hooks.tsx
 msgid "Linking your {providerName} account..."
@@ -1729,6 +2106,11 @@ msgstr "Seznam"
 #: src/utils/locale.ts
 msgid "Lithuanian"
 msgstr "Litovščina"
+
+#. Accessible label for loading spinner icon
+#: src/components/ui/spinner.tsx
+msgid "Loading"
+msgstr "Nalaganje"
 
 #: src/components/command-palette/pages/resumes.tsx
 msgid "Loading resumes..."
@@ -1745,12 +2127,15 @@ msgstr "Nalaganje..."
 msgid "Location"
 msgstr "Lokacija"
 
+#. Resume card context menu action to prevent edits
+#. Resume card dropdown action to prevent edits
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
 #: src/routes/dashboard/resumes/-components/menus/dropdown-menu.tsx
 msgid "Lock"
 msgstr "Zakleni"
 
+#. User menu action to sign out of current account
 #: src/components/user/dropdown-menu.tsx
 msgid "Logout"
 msgstr "Odjava"
@@ -1759,10 +2144,17 @@ msgstr "Odjava"
 msgid "Long-term Sustainability"
 msgstr "Dolgoročna trajnost"
 
+#. Link to backup-code verification flow when authenticator app is unavailable
 #: src/routes/auth/verify-2fa.tsx
 msgid "Lost access to your authenticator?"
 msgstr "Ste izgubili dostop do vaše avtentikatorske naprave?"
 
+#. Impact severity label in resume analysis suggestion card
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Low"
+msgstr "Nizka"
+
+#. Layout editor column label for the primary content area
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Main"
 msgstr "Glavna"
@@ -1795,11 +2187,21 @@ msgstr "Rob (navpično)"
 msgid "Maximum Salary"
 msgstr "Najvišja plača"
 
+#. Impact severity label in resume analysis suggestion card
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Medium"
+msgstr "Srednja"
+
+#. File format label in import source selector
+#: src/dialogs/resume/import.tsx
+msgid "Microsoft Word"
+msgstr "Microsoft Word"
+
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Minimum Salary"
 msgstr "Najnižja plača"
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Model"
 msgstr "Model"
 
@@ -1815,6 +2217,12 @@ msgstr "Premakni na"
 msgid "Multilingual"
 msgstr "Večjezično"
 
+#. Placeholder text for custom link URL field in resume builder
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom-fields.tsx
+msgid "Must start with https://"
+msgstr "Začeti je treba z https://"
+
+#. Label for full name input on registration form
 #: src/dialogs/api-key/create.tsx
 #: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/sections/interest.tsx
@@ -1847,6 +2255,7 @@ msgstr "Nova vrstica"
 msgid "New Page"
 msgstr "Nova stran"
 
+#. Label for new password input on reset-password form
 #: src/dialogs/auth/change-password.tsx
 #: src/routes/auth/reset-password.tsx
 msgid "New Password"
@@ -1867,6 +2276,11 @@ msgstr "Naslednji"
 #: src/routes/_home/-sections/features.tsx
 msgid "No Advertising, No Tracking"
 msgstr "Brez oglaševanja, brez sledenja"
+
+#. Error shown when AI import endpoint returns no parsed resume data
+#: src/dialogs/resume/import.tsx
+msgid "No data was returned from the AI provider."
+msgstr "Ponudnik umetne inteligence ni vrnil nobenih podatkov."
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "No degree required"
@@ -1904,6 +2318,11 @@ msgstr "Opombe"
 msgid "Odia"
 msgstr "odijščina"
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Ollama"
+msgstr "Ollama"
+
 #: src/routes/_home/-sections/features.tsx
 msgid "One-Click Sign-In"
 msgstr "Enkratna prijava"
@@ -1912,26 +2331,37 @@ msgstr "Enkratna prijava"
 msgid "Ongoing Maintenance"
 msgstr "Neprestano vzdrževanje"
 
+#. Resume card context menu action to open the resume editor
+#. Resume card dropdown action to open the resume editor
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
 #: src/routes/dashboard/resumes/-components/menus/dropdown-menu.tsx
 msgid "Open"
 msgstr "Odpri"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Open AI Settings"
-msgstr "Odprite nastavitve AI"
-
+#. Button label to open the user's default email app
 #: src/routes/auth/forgot-password.tsx
 msgid "Open Email Client"
 msgstr "Odpri e-poštni odjemalec"
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Open Integrations Settings"
+msgstr "Odprite Nastavitve integracij"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Open Source"
 msgstr "Odprta koda"
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "OpenAI"
+msgstr "OpenAI"
+
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "OpenRouter"
+msgstr "OpenRouter"
+
 #: src/routes/_home/-sections/donate.tsx
-#: src/routes/_home/-sections/donate.tsx
-#: src/routes/_home/-sections/footer.tsx
 #: src/routes/_home/-sections/footer.tsx
 msgid "opens in new tab"
 msgstr "odpre se v novem zavihku"
@@ -1966,6 +2396,7 @@ msgstr "Skupna ocena"
 msgid "Page"
 msgstr "Stran"
 
+#. Layout editor page label with 1-based page number
 #. placeholder {0}: pageIndex + 1
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
@@ -1976,6 +2407,7 @@ msgstr "Stran {0}"
 msgid "Page {currentPage}"
 msgstr "Stran {currentPage}"
 
+#. Page counter label shown above resume preview pages
 #: src/components/resume/preview.tsx
 msgid "Page {pageNumber} of {totalNumberOfPages}"
 msgstr "Stran {pageNumber} od {totalNumberOfPages}"
@@ -1987,6 +2419,13 @@ msgstr "Odstavek"
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Part-time"
 msgstr "Delni delovni čas"
+
+#. Authentication provider display name in account settings
+#. Label for passkey sign-in button
+#: src/routes/auth/-components/social-auth.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
+msgid "Passkey"
+msgstr "Passkey"
 
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Passkey deleted successfully."
@@ -2004,11 +2443,16 @@ msgstr "Passkeys"
 msgid "Passkeys & 2FA"
 msgstr "Ključi za prijavo in dvofaktorska avtentikacija"
 
+#. Authentication provider display name in account settings
+#. Label for password input on login form
+#. Label for password input on protected resume access form
+#. Label for password input on registration form
 #: src/dialogs/auth/disable-two-factor.tsx
 #: src/dialogs/auth/enable-two-factor.tsx
 #: src/routes/auth/login.tsx
 #: src/routes/auth/register.tsx
 #: src/routes/auth/resume-password.tsx
+#: src/routes/dashboard/settings/authentication/-components/hooks.tsx
 #: src/routes/dashboard/settings/authentication/-components/password.tsx
 msgid "Password"
 msgstr "Geslo"
@@ -2029,8 +2473,12 @@ msgstr "Zaščita z geslom je bila onemogočena."
 msgid "Password protection has been enabled."
 msgstr "Zaščita z geslom je bila omogočena."
 
+#. File format label in import source selector
+#: src/dialogs/resume/import.tsx
+msgid "PDF"
+msgstr "PDF"
+
 #: src/dialogs/resume/sections/education.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/project.tsx
 #: src/dialogs/resume/sections/volunteer.tsx
@@ -2075,6 +2523,7 @@ msgstr "Prosimo, počakajte, medtem ko se vaš PDF generira ..."
 msgid "Polish"
 msgstr "poljščina"
 
+#. Preset button for setting picture aspect ratio to portrait orientation
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Portrait"
 msgstr "Portret"
@@ -2088,12 +2537,10 @@ msgid "Portuguese (Portugal)"
 msgstr "portugalščina (Portugalska)"
 
 #: src/dialogs/resume/sections/experience.tsx
-#: src/dialogs/resume/sections/experience.tsx
 #: src/dialogs/resume/sections/reference.tsx
 msgid "Position"
 msgstr "Položaj"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/preferences/index.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
@@ -2101,9 +2548,18 @@ msgstr "Položaj"
 msgid "Preferences"
 msgstr "Nastavitve"
 
+#: src/components/input/color-picker.tsx
+msgid "Presets"
+msgstr "Prednastavitve"
+
 #: src/components/input/chip-input.tsx
 msgid "Press <0>{RETURN_KEY}</0> or <1>{COMMA_KEY}</1> to add or save the current keyword."
 msgstr "Pritisnite <0>{RETURN_KEY}</0> ali <1>{COMMA_KEY}</1> za dodajanje ali shranjevanje trenutne ključne besede."
+
+#. Command palette hint that pressing Enter opens the selected resume
+#: src/components/command-palette/pages/resumes.tsx
+msgid "Press <0>Enter</0> to open"
+msgstr "Pritisnite <0>Enter</0>, da odprete"
 
 #: src/routes/dashboard/job-search/index.tsx
 msgid "Previous"
@@ -2117,7 +2573,6 @@ msgstr "Primarna barva"
 msgid "Proficiency"
 msgstr "Znanje"
 
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/profile.tsx
@@ -2146,7 +2601,7 @@ msgstr "Zaščitite svoj življenjepis pred nepooblaščenim dostopom z geslom"
 msgid "Protect your resume with a password, and let only people with the password view it."
 msgstr "Zaščitite svoj življenjepis z geslom in dovolite ogled le tistim, ki imajo geslo."
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Provider"
 msgstr "Ponudnik"
 
@@ -2164,13 +2619,18 @@ msgstr "Založnik"
 msgid "Quota: {0} remaining"
 msgstr "Kvota: {0} preostalo"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "RapidAPI Key"
 msgstr "Ključ RapidAPI"
 
 #: src/routes/_home/-sections/header.tsx
 msgid "Reactive Resume - Go to homepage"
 msgstr "Reactive Resume - Pojdi na domačo stran"
+
+#. Import source option for current Reactive Resume JSON format
+#: src/dialogs/resume/import.tsx
+msgid "Reactive Resume (JSON)"
+msgstr "Reaktivni življenjepis (JSON)"
 
 #: src/routes/_home/-sections/prefooter.tsx
 msgid "Reactive Resume continues to grow thanks to its vibrant community. This project owes its progress to numerous individuals who've dedicated their time and skills to make it better. We celebrate the coders who've enhanced its features on GitHub, the linguists whose translations on Crowdin have made it accessible to a broader audience, and the people who've donated to support its continued development."
@@ -2191,6 +2651,16 @@ msgstr "Reactive Resume danes začenja na Product Huntu, obiščite nas in poka�
 #: src/routes/_home/-sections/faq.tsx
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume je odprtokoden, osredotočen na zasebnost in popolnoma brezplačen. Za razliko od drugih graditeljev življenjepisov ne prikazuje oglasov, ne sledi vašim podatkom in ne omejuje funkcij z zidovi plačila."
+
+#. App version label in footer; includes semantic version variable
+#: src/components/ui/copyright.tsx
+msgid "Reactive Resume v{__APP_VERSION__}"
+msgstr "Reaktivni življenjepis v{__APP_VERSION__}"
+
+#. Import source option for legacy Reactive Resume v4 JSON format
+#: src/dialogs/resume/import.tsx
+msgid "Reactive Resume v4 (JSON)"
+msgstr "Reaktivni življenjepis v4 (JSON)"
 
 #: src/dialogs/resume/sections/cover-letter.tsx
 msgid "Recipient"
@@ -2224,7 +2694,7 @@ msgstr "Registracija nove naprave"
 
 #: src/routes/auth/forgot-password.tsx
 msgid "Remember your password? <0/>"
-msgstr ""
+msgstr "Se spomnite svojega gesla? <0/>"
 
 #: src/routes/dashboard/job-search/-components/job-card.tsx
 #: src/routes/dashboard/job-search/-components/job-detail.tsx
@@ -2239,6 +2709,11 @@ msgstr "Samo daljinski upravljalnik"
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Remove"
 msgstr "Odstrani"
+
+#. Screen reader label for button that removes a keyword chip. Variable is the current keyword text.
+#: src/components/input/chip-input.tsx
+msgid "Remove {chip}"
+msgstr "Odstranite {chip}"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Remove Password"
@@ -2276,11 +2751,13 @@ msgstr "Ponovno pošlji potrditveni e-mail"
 msgid "Resending verification email..."
 msgstr "Pošiljanje potrditvenega e-maila ..."
 
+#. Destructive confirmation button label when resetting a resume section
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Reset"
 msgstr "Ponastavi"
 
+#. Primary action button label on reset-password form
 #: src/routes/auth/reset-password.tsx
 msgid "Reset Password"
 msgstr "Ponastavi geslo"
@@ -2306,15 +2783,10 @@ msgid "Resume analysis complete."
 msgstr "Analiza življenjepisa je končana."
 
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
-#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
-#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Resume tailored successfully"
 msgstr "Uspešno prilagojen življenjepis"
 
 #: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/resumes.tsx
-#: src/components/command-palette/pages/resumes.tsx
 #: src/components/command-palette/pages/resumes.tsx
 #: src/routes/_home/-sections/statistics.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
@@ -2350,10 +2822,12 @@ msgstr "Izvedite prvo analizo in pridobite preglednico, prednosti in prednostne 
 msgid "Russian"
 msgstr "ruščina"
 
+#. Passkey rename prompt confirm action in authentication settings
 #: src/routes/dashboard/settings/authentication/-components/passkeys.tsx
 msgid "Save"
 msgstr "Shrani"
 
+#. Button label to save the selected number of detected skills to the original resume
 #. placeholder {0}: selectedSkills.size
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
 msgid "Save {0} Skills"
@@ -2392,15 +2866,20 @@ msgid "Scorecard"
 msgstr "Preglednica rezultatov"
 
 #: src/routes/dashboard/job-search/index.tsx
-#: src/routes/dashboard/job-search/index.tsx
 msgid "Search"
 msgstr "Iskanje"
+
+#. Accessible label for command palette search input
+#: src/components/command-palette/index.tsx
+msgid "Search commands"
+msgstr "Ukazi za iskanje"
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Search countries"
 msgstr "Iskanje držav"
 
-#: src/components/input/icon-picker.tsx
+#. Accessible label for icon picker search input
+#. Placeholder text in icon picker search input
 #: src/components/input/icon-picker.tsx
 msgid "Search for an icon"
 msgstr "Poišči ikono"
@@ -2409,6 +2888,8 @@ msgstr "Poišči ikono"
 msgid "Search for..."
 msgstr "Iskanje ..."
 
+#. Placeholder in command palette input on nested pages
+#: src/components/command-palette/index.tsx
 #: src/components/ui/combobox.tsx
 msgid "Search..."
 msgstr "Iskanje ..."
@@ -2423,10 +2904,9 @@ msgstr "Vrsta razdelka"
 
 #. placeholder {0}: job.job_title
 #. placeholder {1}: job.employer_name
-#. placeholder {2}: aiEnabled ? " and the AI will optimize it for this position." : "."
 #: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
-msgid "Select a resume to tailor for \"{0}\" at {1}. A copy will be created{2}"
-msgstr "Izberite življenjepis, ki ga želite prilagoditi za \"{0}\" na {1}. Ustvarjena bo kopija{2}"
+msgid "Select a resume to tailor for \"{0}\" at {1}. A copy will be created."
+msgstr "Izberite življenjepis, ki ga želite prilagoditi za \"{0}\" na {1}. Ustvarjena bo kopija."
 
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Select country"
@@ -2440,6 +2920,7 @@ msgstr "Izberi ..."
 msgid "Self-Host with Docker"
 msgstr "Lastno gostovanje z Dockerjem"
 
+#. Primary action button label on forgot-password form
 #: src/routes/auth/forgot-password.tsx
 msgid "Send Password Reset Email"
 msgstr "Pošlji e-pošto za ponastavitev gesla"
@@ -2457,13 +2938,10 @@ msgid "Serbian"
 msgstr "srbščina"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 #: src/routes/dashboard/settings/authentication/-components/password.tsx
 msgid "Set Password"
 msgstr "Nastavi geslo"
 
-#: src/components/command-palette/pages/navigation.tsx
-#: src/components/command-palette/pages/navigation.tsx
 #: src/components/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/-components/sidebar.tsx
 msgid "Settings"
@@ -2507,6 +2985,27 @@ msgstr "Prikaži"
 msgid "Show link in title"
 msgstr "Pokaži povezavo v naslovu"
 
+#. Accessible label for button that reveals password in registration form
+#. Accessible label for button that reveals password in reset-password form
+#. Accessible label for button that reveals password on protected resume screen
+#. Accessible label for button that reveals the password in login form
+#. Accessible label for toggle button that reveals the masked current password
+#. Accessible label for toggle button that reveals the masked new password
+#. Accessible label for toggle button that reveals the masked password in two-factor disable dialog
+#. Accessible label for toggle button that reveals the masked password in two-factor setup
+#: src/dialogs/auth/change-password.tsx
+#: src/dialogs/auth/disable-two-factor.tsx
+#: src/dialogs/auth/enable-two-factor.tsx
+#: src/routes/auth/login.tsx
+#: src/routes/auth/register.tsx
+#: src/routes/auth/reset-password.tsx
+#: src/routes/auth/resume-password.tsx
+msgid "Show password"
+msgstr "Prikaži geslo"
+
+#. Dialog title for the mobile navigation sidebar panel
+#. Layout editor column label for the secondary sidebar area
+#: src/components/ui/sidebar.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Sidebar"
 msgstr "Stranska vrstica"
@@ -2515,10 +3014,19 @@ msgstr "Stranska vrstica"
 msgid "Sidebar Width"
 msgstr "Širina stranske vrstice"
 
+#. Primary action button label on login form
 #: src/routes/auth/login.tsx
 msgid "Sign in"
 msgstr "Prijava"
 
+#. Call-to-action link from forgot-password page to login page
+#. Call-to-action link from registration page to login page
+#: src/routes/auth/forgot-password.tsx
+#: src/routes/auth/register.tsx
+msgid "Sign in now"
+msgstr "Prijavite se zdaj"
+
+#. Title on the login page
 #: src/routes/auth/login.tsx
 msgid "Sign in to your account"
 msgstr "Prijavite se v svoj račun"
@@ -2527,12 +3035,11 @@ msgstr "Prijavite se v svoj račun"
 msgid "Sign in with GitHub, Google or a custom OAuth provider."
 msgstr "Prijavite se z GitHub, Google ali poljubnim ponudnikom OAuth."
 
+#. Primary action button label on registration form
 #: src/routes/auth/register.tsx
 msgid "Sign up"
 msgstr "Registracija"
 
-#: src/routes/auth/-components/social-auth.tsx
-#: src/routes/auth/-components/social-auth.tsx
 #: src/routes/auth/-components/social-auth.tsx
 #: src/routes/auth/login.tsx
 msgid "Signing in..."
@@ -2557,6 +3064,10 @@ msgstr "Enojen stolpec z minimalno zgornjo glavo in veliko praznega prostora; č
 #: src/dialogs/resume/template/data.ts
 msgid "Single-column with a sidebar and clean grid layout; versatile for any professional or technical role."
 msgstr "Enojen stolpec s stransko vrstico in čistim mrežnim prikazom; vsestransko za vsako strokovno ali tehnično vlogo."
+
+#: src/dialogs/resume/template/data.ts
+msgid "Single-column with an inline three-column entry header (position · organization · period); compact and ATS-friendly, well-suited for Asian resume conventions (CN/JP/KR)."
+msgstr "Enoslojni z vdelanim tristebrnim glavičem (položaj - organizacija - pika); kompakten in prijazen do sistemov ATS, primeren za azijske konvencije življenjepisov (CN/JP/KR)."
 
 #: src/dialogs/resume/template/data.ts
 msgid "Single-column; polished and serious for senior or enterprise-level positions."
@@ -2585,19 +3096,31 @@ msgstr "slovaščina"
 
 #: src/utils/locale.ts
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovenščina"
 
 #: src/dialogs/resume/index.tsx
 msgid "Slug"
 msgstr "Polž"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
+#. Fallback error description when resume analysis request fails
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "Something went wrong while analyzing your resume."
+msgstr "Pri analizi vašega življenjepisa je šlo nekaj narobe."
+
+#. Fallback error description when syncing newly detected skills fails
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Something went wrong while syncing skills."
+msgstr "Med sinhronizacijo spretnosti je šlo nekaj narobe."
+
+#. Fallback error description when tailoring pipeline fails
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "Something went wrong while tailoring your resume."
+msgstr "Pri pripravi življenjepisa je šlo nekaj narobe."
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Something went wrong. Please try again."
 msgstr "Nekaj je šlo narobe. Prosimo, poskusite znova."
 
-#: src/routes/dashboard/resumes/index.tsx
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Sort by"
 msgstr "Razvrsti po"
@@ -2627,6 +3150,7 @@ msgstr "Sponzorji"
 msgid "Sponsorships"
 msgstr "Sponzorstva"
 
+#. Preset button for setting picture aspect ratio to square
 #: src/components/level/combobox.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Square"
@@ -2674,7 +3198,10 @@ msgstr "Podreddit"
 msgid "Suggestions"
 msgstr "Predlogi"
 
+#. Fallback title for a custom summary item in resume builder when content is empty
+#. Fallback title for a custom summary item in resume builder when content is unavailable
 #: src/dialogs/resume/sections/custom.tsx
+#: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/utils/resume/section.tsx
 msgid "Summary"
 msgstr "Povzetek"
@@ -2744,8 +3271,8 @@ msgstr "Galerija predlog"
 msgid "Templates"
 msgstr "Predloge"
 
-#: src/routes/dashboard/settings/ai.tsx
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Test Connection"
 msgstr "Preizkusi povezavo"
 
@@ -2753,6 +3280,7 @@ msgstr "Preizkusi povezavo"
 msgid "Testimonials"
 msgstr "Pričevanja"
 
+#: src/components/input/rich-input.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
 msgid "Text Color"
 msgstr "Barva besedila"
@@ -2765,6 +3293,20 @@ msgstr "tajščina"
 msgid "The AI identified new skills from your experience that match this job. Select which ones to save back to your original resume for future applications. This will permanently modify your original resume and cannot be undone."
 msgstr "Umetna inteligenca je iz vaših izkušenj prepoznala nova znanja in spretnosti, ki ustrezajo temu delovnemu mestu. Izberite, katera želite shraniti nazaj v svoj prvotni življenjepis za prihodnje prijave. To bo trajno spremenilo vaš prvotni življenjepis in tega ni mogoče preklicati."
 
+#. Error description when AI returns invalid resume analysis format
+#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+msgid "The AI returned an invalid analysis format. Please try again."
+msgstr "UI je vrnil neveljavno obliko analize. Poskusite znova."
+
+#. Error description when AI tailoring output is invalid
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "The AI returned invalid tailoring data. Please try again."
+msgstr "UI je vrnila neveljavne podatke o prilagajanju. Poskusite znova."
+
+#: src/routes/dashboard/job-search/-components/tailor-dialog.tsx
+msgid "The AI will optimize it for this position."
+msgstr "Umetna inteligenca ga bo optimizirala za ta položaj."
+
 #: src/routes/dashboard/settings/api-keys.tsx
 msgid "The API key has been deleted successfully."
 msgstr "API ključ je bil uspešno izbrisan."
@@ -2773,13 +3315,20 @@ msgstr "API ključ je bil uspešno izbrisan."
 msgid "The API key will no longer be able to access your data after deletion. This action cannot be undone."
 msgstr "Po izbrisu API ključa ta več ne bo imel dostopa do vaših podatkov. To dejanje ni mogoče razveljaviti."
 
+#. Empty-state message when no command palette results match the search query
 #: src/components/command-palette/index.tsx
 msgid "The command you're looking for doesn't exist."
 msgstr "Ukaz, ki ga iščete, ne obstaja."
 
+#. Warning shown when resume content exceeds printable page height
 #: src/components/resume/preview.tsx
 msgid "The content is too tall for this page, this may cause undesirable results when exporting to PDF."
 msgstr "Vsebina je previsoka za to stran, kar lahko povzroči nezaželene rezultate pri izvozu v PDF."
+
+#. Error shown when AI parsing returns invalid resume structure during import
+#: src/dialogs/resume/import.tsx
+msgid "The imported file could not be parsed into a valid resume."
+msgstr "Uvožene datoteke ni bilo mogoče razčleniti v veljavno obnovo."
 
 #: src/routes/auth/resume-password.tsx
 msgid "The password you entered is incorrect"
@@ -2793,6 +3342,7 @@ msgstr "Življenjepis, do katerega želite dostopati, je zaščiten z geslom"
 msgid "The URL you entered is not valid."
 msgstr "Vneseni URL ni veljaven."
 
+#. Menu item that opens appearance theme selection submenu
 #: src/components/command-palette/pages/preferences/theme.tsx
 #: src/components/user/dropdown-menu.tsx
 #: src/routes/dashboard/settings/preferences.tsx
@@ -2823,7 +3373,6 @@ msgstr "To dejanje ni mogoče razveljaviti."
 msgid "This action cannot be undone. All your data will be permanently deleted."
 msgstr "To dejanje ni mogoče razveljaviti. Vsi vaši podatki bodo trajno izbrisani."
 
-#: src/dialogs/resume/import.tsx
 #: src/dialogs/resume/import.tsx
 msgid "This feature requires AI Integration to be enabled. Please enable it in the settings."
 msgstr "Ta funkcija zahteva omogočeno AI integracijo. Prosim omogočite jo v nastavitvah."
@@ -2869,6 +3418,10 @@ msgstr "To bo ustvarilo nov API ključ za dostop do API-ja Reactive Resume, da b
 msgid "This will help you identify it later, if you plan to have multiple passkeys."
 msgstr "Če nameravate imeti več ključev, vam bo to pomagalo pri kasnejši identifikaciji."
 
+#: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
+msgid "This will remove all items from this section."
+msgstr "S tem boste odstranili vse elemente iz tega razdelka."
+
 #: src/routes/_home/-sections/hero.tsx
 msgid "Timelapse demonstration of building a resume with Reactive Resume"
 msgstr "Časovni posnetek gradnje življenjepisa z Reactive Resume"
@@ -2900,6 +3453,23 @@ msgstr "Če želite poiskati ponudbe delovnih mest, morate v nastavitvah konfigu
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
 msgid "Today"
 msgstr "Danes"
+
+#. Screen-reader label for opening or closing the left sidebar in resume builder
+#: src/routes/builder/$resumeId/-components/header.tsx
+msgid "Toggle left sidebar"
+msgstr "Toggle leva stranska vrstica"
+
+#. Screen-reader label for opening or closing the right sidebar in resume builder
+#: src/routes/builder/$resumeId/-components/header.tsx
+msgid "Toggle right sidebar"
+msgstr "Preklapljanje desne stranske vrstice"
+
+#. Accessible label for draggable/clickable sidebar rail that toggles sidebar visibility
+#. Screen-reader-only label for button that opens or closes the app sidebar
+#. Tooltip text for sidebar rail toggle action
+#: src/components/ui/sidebar.tsx
+msgid "Toggle Sidebar"
+msgstr "Toggle Stranska vrstica"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
 msgid "Track your resume's views and downloads"
@@ -2967,6 +3537,11 @@ msgstr "Dvostopenjska avtentikacija je bila uspešno onemogočena."
 msgid "Two-factor authentication has been setup successfully."
 msgstr "Dvostopenjska avtentikacija je bila uspešno nastavljena."
 
+#. Accessible title for QR code image shown during two-factor setup
+#: src/dialogs/auth/enable-two-factor.tsx
+msgid "Two-Factor Authentication QR Code"
+msgstr "Dvofaktorska avtentikacija QR koda"
+
 #: src/dialogs/resume/import.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
 #: src/routes/dashboard/job-search/-components/search-filters.tsx
@@ -2977,6 +3552,8 @@ msgstr "Vrsta"
 msgid "Type \"{CONFIRMATION_TEXT}\" to confirm"
 msgstr "Vnesite \"{CONFIRMATION_TEXT}\" za potrditev"
 
+#. Placeholder in command palette input on root page
+#. Screen-reader dialog description instructing users how to use the command palette
 #: src/components/command-palette/index.tsx
 msgid "Type a command or search..."
 msgstr "Vnesite ukaz ali iskanje..."
@@ -3010,6 +3587,9 @@ msgstr "Neomejeni življenjepisi"
 msgid "Unlinking your {providerName} account..."
 msgstr "Preklic povezave vašega računa {providerName}..."
 
+#. Primary action button label to unlock a password-protected resume
+#. Resume card context menu action to remove edit lock
+#. Resume card dropdown action to remove edit lock
 #: src/routes/auth/resume-password.tsx
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
@@ -3025,6 +3605,14 @@ msgstr "Neimenovani ključ dostopa"
 msgid "Unverified"
 msgstr "Noverificirano"
 
+#. Salary label when only an upper salary bound is available
+#. placeholder {0}: formatCurrency(max)
+#: src/routes/dashboard/job-search/-components/job-utils.ts
+msgid "Up to {0}{periodSuffix}"
+msgstr "Do {0}{periodSuffix}"
+
+#. Resume card context menu action to edit resume metadata
+#. Resume card dropdown action to edit resume metadata
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
@@ -3093,6 +3681,7 @@ msgstr "Posodobi obstoječi element povzetka"
 msgid "Update an existing volunteer experience"
 msgstr "Posodobite obstoječo prostovoljsko izkušnjo"
 
+#. Primary action button to submit changed password
 #: src/dialogs/auth/change-password.tsx
 #: src/routes/dashboard/settings/authentication/-components/password.tsx
 msgid "Update Password"
@@ -3115,13 +3704,24 @@ msgid "Updating your resume..."
 msgstr "Posodabljanje vašega življenjepisa..."
 
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+msgid "Upload picture"
+msgstr "Naloži sliko"
+
+#: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Uploading picture..."
 msgstr "Nalaganje slike..."
 
+#. Form field label for the generated public resume link in sharing settings
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
+#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "URL"
 msgstr "URL"
 
+#: src/components/input/color-picker.tsx
+msgid "Use color {color}"
+msgstr "Uporaba barve {color}"
+
+#. Label for username input on registration form
 #: src/dialogs/resume/sections/profile.tsx
 #: src/routes/auth/register.tsx
 #: src/routes/dashboard/settings/profile.tsx
@@ -3140,10 +3740,17 @@ msgstr "uzbeščina"
 msgid "Valid URLs must start with http:// or https://."
 msgstr "Veljavni URL-ji se morajo začeti z http:// ali https://."
 
+#. AI provider option label in dashboard AI settings
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
+msgid "Vercel AI Gateway"
+msgstr "Vercel AI Gateway"
+
 #: src/routes/dashboard/settings/profile.tsx
 msgid "Verified"
 msgstr "Preverjeno"
 
+#. Primary action button to submit 2FA code
+#. Primary action button to submit backup code
 #: src/routes/auth/verify-2fa-backup.tsx
 #: src/routes/auth/verify-2fa.tsx
 msgid "Verify"
@@ -3200,7 +3807,7 @@ msgstr "Spletna stran"
 msgid "What do you want to rename this section to?"
 msgstr "Kako želite preimenovati ta razdelek?"
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "What is JSearch API?"
 msgstr "Kaj je JSearch API?"
 
@@ -3275,7 +3882,7 @@ msgstr "Vaše spremembe se samodejno shranijo."
 msgid "Your data is secure, and never shared or sold to anyone."
 msgstr "Vaši podatki so varni in se nikoli ne delijo ali prodajajo nikomur."
 
-#: src/routes/dashboard/settings/ai.tsx
+#: src/routes/dashboard/settings/integrations/-components/ai-section.tsx
 msgid "Your data is stored locally"
 msgstr "Vaši podatki so shranjeni lokalno"
 
@@ -3299,11 +3906,10 @@ msgstr "Vaše geslo je bilo uspešno posodobljeno."
 msgid "Your profile has been updated successfully."
 msgstr "Vaš profil je bil uspešno posodobljen."
 
-#: src/routes/dashboard/settings/job-search.tsx
+#: src/routes/dashboard/settings/integrations/-components/job-search-section.tsx
 msgid "Your RapidAPI key is stored locally on your browser. It is only sent to the server when making a request to search for jobs, and is never stored or logged on our servers."
 msgstr "Ključ RapidAPI je shranjen lokalno v brskalniku. Na strežnik se pošlje le ob zahtevku za iskanje delovnih mest in se nikoli ne shranjuje ali beleži na naših strežnikih."
 
-#: src/dialogs/resume/index.tsx
 #: src/dialogs/resume/index.tsx
 msgid "Your resume has been created successfully."
 msgstr "Vaš življenjepis je bil uspešno ustvarjen."

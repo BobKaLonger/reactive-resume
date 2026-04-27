@@ -79,8 +79,8 @@ function RouteComponent() {
           <p className="text-muted-foreground">
             <Trans>To search for job listings, you need to configure your RapidAPI key in settings.</Trans>
           </p>
-          <Button nativeButton={false} variant="outline" render={<Link to="/dashboard/settings/job-search" />}>
-            <Trans>Go to Settings</Trans>
+          <Button nativeButton={false} variant="outline" render={<Link to="/dashboard/settings/integrations" />}>
+            <Trans>Go to Integrations</Trans>
           </Button>
         </motion.div>
       ) : (
@@ -96,11 +96,17 @@ function RouteComponent() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder={t`e.g. frontend developer jobs in Berlin`}
+                placeholder={t({
+                  comment: "Example placeholder text in job search input field",
+                  message: "e.g. frontend developer jobs in Berlin",
+                })}
+                aria-label={t({
+                  comment: "Accessible label for free-text job search query field",
+                  message: "Job search query",
+                })}
                 autoCorrect="off"
                 autoComplete="off"
                 spellCheck="false"
-                autoFocus
               />
             </div>
 

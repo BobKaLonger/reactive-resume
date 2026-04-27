@@ -9,6 +9,7 @@ import { useForm, useFormContext, useFormState } from "react-hook-form";
 import type { DialogProps } from "@/dialogs/store";
 
 import { ChipInput } from "@/components/input/chip-input";
+import { ColorPicker } from "@/components/input/color-picker";
 import { IconPicker } from "@/components/input/icon-picker";
 import { RichInput } from "@/components/input/rich-input";
 import { useResumeStore } from "@/components/resume/store/resume";
@@ -16,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PopoverTrigger } from "@/components/ui/popover";
 import { useDialogStore } from "@/dialogs/store";
 import { useFormBlocker } from "@/hooks/use-form-blocker";
 import { interestItemSchema } from "@/schema/resume/data";
@@ -37,6 +39,7 @@ export function CreateInterestDialog({ data }: DialogProps<"resume.sections.inte
       id: generateId(),
       hidden: data?.item?.hidden ?? false,
       icon: data?.item?.icon ?? "acorn",
+      iconColor: data?.item?.iconColor ?? "",
       name: data?.item?.name ?? "",
       keywords: data?.item?.keywords ?? [],
       description: data?.item?.description ?? "",
@@ -91,6 +94,7 @@ export function UpdateInterestDialog({ data }: DialogProps<"resume.sections.inte
       id: data.item.id,
       hidden: data.item.hidden,
       icon: data.item.icon,
+      iconColor: data.item.iconColor,
       name: data.item.name,
       keywords: data.item.keywords,
       description: data.item.description ?? "",
@@ -153,7 +157,11 @@ function InterestForm() {
             <FormItem className="shrink-0">
               <FormControl
                 render={
-                  <IconPicker {...field} popoverProps={{ modal: true }} className="rounded-r-none! border-e-0!" />
+                  <IconPicker
+                    {...field}
+                    popoverProps={{ modal: true }}
+                    className="rounded-r-none border-e-0 border-input"
+                  />
                 }
               />
             </FormItem>
@@ -168,8 +176,34 @@ function InterestForm() {
               <FormLabel>
                 <Trans>Name</Trans>
               </FormLabel>
-              <FormControl render={<Input className="rounded-l-none!" {...field} />} />
+              <FormControl render={<Input className="rounded-s-none rounded-e-none" {...field} />} />
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="iconColor"
+          render={({ field }) => (
+            <FormItem className="shrink-0">
+              <FormControl
+                render={
+                  <ColorPicker
+                    {...field}
+                    value={field.value}
+                    onChange={field.onChange}
+                    trigger={
+                      <PopoverTrigger className="h-9 rounded-e border-y border-e border-input px-2">
+                        <div
+                          className="size-4 shrink-0 cursor-pointer rounded-full border border-foreground/60 transition-all hover:scale-105 focus-visible:outline-hidden"
+                          style={{ backgroundColor: field.value ?? "currentColor" }}
+                        />
+                      </PopoverTrigger>
+                    }
+                  />
+                }
+              />
             </FormItem>
           )}
         />

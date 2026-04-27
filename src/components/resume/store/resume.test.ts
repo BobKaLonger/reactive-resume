@@ -1,4 +1,10 @@
+import type { toast } from "sonner";
+
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
+
+import { defaultResumeData } from "@/schema/resume/data";
+
+import { useResumeStore } from "./resume";
 
 // Mock dependencies before importing the store
 vi.mock("@lingui/core/macro", () => ({
@@ -7,8 +13,8 @@ vi.mock("@lingui/core/macro", () => ({
 
 vi.mock("sonner", () => ({
   toast: {
-    error: vi.fn(() => "toast-id"),
-    dismiss: vi.fn(),
+    error: vi.fn<typeof toast.error>(() => "toast-id"),
+    dismiss: vi.fn<typeof toast.dismiss>(),
   },
 }));
 
@@ -16,15 +22,11 @@ vi.mock("@/integrations/orpc/client", () => ({
   orpc: {
     resume: {
       update: {
-        call: vi.fn(() => Promise.resolve()),
+        call: vi.fn<() => Promise<void>>(() => Promise.resolve()),
       },
     },
   },
 }));
-
-import { defaultResumeData } from "@/schema/resume/data";
-
-import { useResumeStore } from "./resume";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -113,6 +115,7 @@ describe("useResumeStore — updateResumeData", () => {
         id: "s1",
         hidden: false,
         icon: "",
+        iconColor: "",
         name: "TypeScript",
         proficiency: "Advanced",
         level: 4,
@@ -128,10 +131,13 @@ describe("useResumeStore — updateResumeData", () => {
     // Store starts with null resume
     useResumeStore.getState().initialize(null);
 
-    // Should not throw
-    useResumeStore.getState().updateResumeData((draft) => {
-      draft.basics.name = "Should not apply";
-    });
+    expect(() =>
+      useResumeStore.getState().updateResumeData((draft) => {
+        draft.basics.name = "Should not apply";
+      }),
+    ).not.toThrow();
+
+    expect(useResumeStore.getState().isReady).toBe(false);
   });
 
   it("blocks updates when resume is locked", async () => {
@@ -241,7 +247,16 @@ describe("useResumeStore — edge cases", () => {
   it("can remove all items from a section", () => {
     const resume = makeResume();
     resume.data.sections.skills.items = [
-      { id: "s1", hidden: false, icon: "", name: "JS", proficiency: "", level: 0, keywords: [] },
+      {
+        id: "s1",
+        hidden: false,
+        icon: "",
+        iconColor: "",
+        name: "JS",
+        proficiency: "",
+        level: 0,
+        keywords: [],
+      },
     ];
     useResumeStore.getState().initialize(resume);
 
